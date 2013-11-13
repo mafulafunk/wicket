@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JS Events performance test</title>
+</head>
+<body>
+	<script type="text/javascript">
+	(function(){
+		var html = [];
+		for (var n = 0; n < 5000; n++)
+			html.push('<a id="link-' + n + '" href="#' + n + '">' + n + '</a>');
+		document.body.innerHTML += html.join(' ');
+		if (/single/.test(location.search)) {
+			document.addEventListener('click', function(e){
+				e = e || window.event;
+				var t = e.target || this;
+				if (/a/i.test(t.nodeName)) {
+					alert('Single: Link #'+location.search+' wurde geklickt');
+					e.preventDefault();
+					return false;
+				}
+			}, false);
+		} else {
+			for (var nodes = document.body.getElementsByTagName('a'), n = 0; n < nodes.length; n++) {
+				nodes[n].addEventListener('click', function(e){
+					e = e || window.event;
+					alert('NonSingle: Link #'+location.search+' wurde geklickt');
+					e.preventDefault();
+					return false;
+				}, false);
+			}
+		}
+	})();
+	</script>
+</body>
+</html>
