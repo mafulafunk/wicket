@@ -1,0 +1,8 @@
+target
+bin
+.project
+.classpath
+.metadata
+.settings
+.xml~
+

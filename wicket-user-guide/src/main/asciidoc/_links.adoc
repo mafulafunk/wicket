@@ -1,0 +1,17 @@
+// _links.adoc
+
+:link_github_wicket_tutorial_examples: https://github.com/bitstorm/Wicket-tutorial-examples[TBD: Git repository, window="_blank"]
+:link_github_wicket_tutorial_examples_according: https://github.com/bitstorm/Wicket-tutorial-examples[TBD: the according repository on Github, window="_blank"]
+
+:link_wicket_apache_org: http://wicket.apache.org[http://wicket.apache.org, window="_blank"]
+:link_wicket_help_email: http://wicket.apache.org/help/email.html[(one for users and another one for framework developers), window="_blank"]
+:link_wicket_in_action: http://wicketinaction.com[Wicket in Action, window="_blank"]
+:link_wicket_learn_books: http://wicket.apache.org/learn/books/[many good books, window="_blank"]
+:link_wicket_library: http://www.wicket-library.com/[Wicket Library, window="_blank"]
+:link_wicket_start_quickstart: http://wicket.apache.org/start/quickstart.html[http://wicket.apache.org/start/quickstart.html, window="_blank"]
+:link_wicket_jira: https://issues.apache.org/jira/browse/WICKET["Apache JIRA]
+:link_wikipedia_POJO: http://en.wikipedia.org/wiki/Plain_Old_Java_Object[POJO]
+
+
+:image_comsysto: image:comsysto-logo.png[http://comsysto.com/]
+

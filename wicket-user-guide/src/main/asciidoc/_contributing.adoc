@@ -1,0 +1,33 @@
+You can contribute to this guide by following these steps:
+
+* The guide uses Grails GDoc to generate the final HTML/PDF so you should consult with its [syntax|http://grails.org/WikiSyntax].
+
+* Checkout Apache Wicket's [site|https://svn.apache.org/repos/asf/wicket/common/site/trunk/_site/]
+[source]
+----
+svn checkout https://svn.apache.org/repos/asf/wicket/common/site/trunk/_site/
+----
+
+* Edit the _.gdoc_ files in __site/guide/guide/src/docs/guide_ folder 
+
+* To preview your changes you should have [Grails|http://grails.org/] installed.
+** Download it from [here|http://grails.org/download]. 
+*Note*: Download version *2.2.4*. Newer versions are not supported at the moment.
+** Install it by following these [instructions|http://grails.org/doc/latest/guide/gettingStarted.html#requirements]
+
+* Navigate to __site/guide/guide_ folder and execute
+[source]
+----
+grails doc
+----
+
+* To preview your changes open __site/guide/index.html_ in a browser
+
+* Create a patch with
+[source]
+----
+svn diff > my.patch
+----
+and attach it to a ticket in Apache Wicket's [JIRA|https://issues.apache.org/jira/browse/WICKET]
+
+*Thank you!*
