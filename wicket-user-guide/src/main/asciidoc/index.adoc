@@ -1,0 +1,28 @@
+= Wicket 6.x Reference Guide
+The Apache Software Foundation; Andrea Del Bene; Martin Grigorov; Carsten Hufe; Christian Kroemer; Daniel Bartl; Paul Borș
+v0.1, 2014-11-22
+
+:doctype: book
+:toc: left
+:icons: font
+:sectlinks:
+:numbered:
+:linkattrs:
+
+include::_links.adoc[]
+
+[colophon]
+= Colophon
+include::_colophon.adoc[]
+
+== Introduction
+include::_introduction.adoc[]
+
+== How to use the example code
+include::_howToSource.adoc[]
+
+== Why should I learn Wicket?
+include::_whyLearn.adoc[]
+
+== Wicket says “Hello world!”
+include::_helloWorld.adoc[]
