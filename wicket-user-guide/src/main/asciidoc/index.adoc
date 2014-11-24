@@ -6,14 +6,16 @@ The Apache Software Foundation
 
 The up-to-date guide with everything you wanted to know about Apache Wicket but were afraid to ask or too lazy to google for. Wicket is a component oriented, open source, Java web framework.
 
-include::frontmatter/frontmatter.adoc[]
+//include::frontmatter/frontmatter.adoc[]
 
 :numbered:
 
 == Introduction
+include::introduction.adoc[]
 
-
+== How to use the example code
+include::howToSource.adoc[]
 
 == Working with Ajax
 
-include::ajax/ajax.adoc[]
+//include::ajax/ajax.adoc[]
