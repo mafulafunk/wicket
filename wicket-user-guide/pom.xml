@@ -23,7 +23,7 @@
         <version>7.0.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <artifactId>guide</artifactId>
+    <artifactId>wicket-user-guide</artifactId>
     <name>Apache Wicket Reference Guide</name>
     <description>A living and breathing Reference Guide for Apache Wicket</description>
     <properties>
