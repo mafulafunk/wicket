@@ -4,15 +4,3 @@ But before starting to learn the last “coolest” framework we should always a
 Java's ecosystem is already full of many well-known web frameworks, so why should we spend our time learning Wicket?
 
 This chapter will show you how Wicket is different from other web frameworks you may know and it will explain also how it can improve your life as web developer.
-
-=== We all like spaghetti :-) ...
-include::_whyLearn/whyLearn_1.adoc[]
-
-=== Component oriented frameworks - an overview
-include::_whyLearn/whyLearn_2.adoc[]
-
-=== Benefits of component oriented frameworks for web development
-include::_whyLearn/whyLearn_3.adoc[]
-
-=== Wicket vs the other component oriented frameworks
-include::_whyLearn/whyLearn_4.adoc[]
