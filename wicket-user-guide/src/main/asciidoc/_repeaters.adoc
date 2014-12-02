@@ -20,3 +20,18 @@ A common task for web applications is to display a set of items. The most typica
 To ease this task Wicket provides a number of special-purpose components called repeaters which are designed to use their related markup to display the items of a given set in a more natural and less chaotic way.
 
 In this chapter we will see some of the built-in repeaters that come with Wicket.
+
+=== The RepeatingView Component
+include::_repeaters/repeaters_1.adoc[]
+
+=== The ListView Component
+include::_repeaters/repeaters_2.adoc[]
+
+=== The RefreshingView Component
+include::_repeaters/repeaters_3.adoc[]
+
+=== Pageable repeaters
+include::_repeaters/repeaters_4.adoc[]
+
+=== Summary
+include::_repeaters/repeaters_5.adoc[]

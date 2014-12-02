@@ -1,10 +1,9 @@
 
-
 During its life a Wicket component goes through three basic stages:
 
-# *Initialization:* a component is instantiated by Wicket and prepared for the rendering phase.
-# *Rendering:* in this stage Wicket generates component markup. If a component contains children (i.e. is a subclass of @MarkupContainer@) it must first wait for them to be rendered before starting its own rendering. 
-# *Removing:* this stage is triggered when a component is explicitly removed from its component hierarchy, i.e. when its parent invokes @remove(component)@ on it. This stage is facultative and is never triggered for pages.
+. *Initialization:* a component is instantiated by Wicket and prepared for the rendering phase.
+. *Rendering:* in this stage Wicket generates component markup. If a component contains children (i.e. is a subclass of @MarkupContainer@) it must first wait for them to be rendered before starting its own rendering.
+. *Removing:* this stage is triggered when a component is explicitly removed from its component hierarchy, i.e. when its parent invokes @remove(component)@ on it. This stage is facultative and is never triggered for pages.
 
 The following picture shows the state diagram of component lifecycle:
 

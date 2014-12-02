@@ -2,3 +2,21 @@ Although Wicket was born to provide a reliable and comprehensive object oriented
 
 Wicket provides wrapper classes that allow us to easily access to web entities without the burden of using the low-level APIs of Java Servlet Specification. However it will always be possible to access standard classes (like HttpSession, HttpServletRequest, etc...) that lay under our Wicket application.
 This chapter will introduce these wrapper classes and it will explain how Wicket uses them to handle the web requests initiated by the user's browser.
+
+=== Class Application and request processing
+include::_requestProcessing/requestProcessing_1.adoc[]
+
+=== Request and Response classes
+include::_requestProcessing/requestProcessing_2.adoc[]
+
+=== The “director” of request processing - RequestCycle
+include::_requestProcessing/requestProcessing_3.adoc[]
+
+=== Session Class
+include::_requestProcessing/requestProcessing_4.adoc[]
+
+=== Exception handling
+include::_requestProcessing/requestProcessing_5.adoc[]
+
+=== Summary
+include::_requestProcessing/requestProcessing_6.adoc[]

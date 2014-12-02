@@ -1,1 +1,19 @@
 In chapter 10 we have seen how the topic of localization is involved in the generation of feedback messages and we had a first contact with resource bundles. In this chapter we will continue to explore the localization support provided by Wicket and we will learn how to build pages and components ready to be localized in different languages.
+
+=== Localization
+include::_i18n/i18n_1.adoc[]
+
+=== Localization in Wicket
+include::_i18n/i18n_2.adoc[]
+
+=== Bundles lookup algorithm
+include::_i18n/i18n_3.adoc[]
+
+=== Localization of component's choices
+include::_i18n/i18n_4.adoc[]
+
+=== Internationalization and Models
+include::_i18n/i18n_5.adoc[]
+
+=== Summary
+include::_i18n/i18n_6.adoc[]

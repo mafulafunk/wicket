@@ -1,3 +1,36 @@
 Many Wicket newbies are initially scared by its approach to web development because they have the impression that the component-oriented nature of the framework prevents them from having direct control over the generated markup. This is due to the fact that many developers come from other server-side technologies like JSP where we physically implement the logic that controls how the final HTML is generated.
 
 This chapter will prevent you from having any initial misleading feeling about Wicket showing you how to control and manipulate the generated HTML with the built-in tools shipped with the framework.
+
+=== Hiding or disabling a component
+include::_keepControl/keepControl_1.adoc[]
+
+=== Modifing tag attributes
+include::_keepControl/keepControl_2.adoc[]
+
+=== Generating tag attribute 'id'
+include::_keepControl/keepControl_3.adoc[]
+
+=== Creating in-line panels with WebMarkupContainer
+include::_keepControl/keepControl_4.adoc[]
+
+=== Working with markup fragments
+include::_keepControl/keepControl_5.adoc[]
+
+=== Adding header contents to the final page
+include::_keepControl/keepControl_6.adoc[]
+
+=== Using stub markup in our pages/panels
+include::_keepControl/keepControl_7.adoc[]
+
+=== How to render component body only
+include::_keepControl/keepControl_8.adoc[]
+
+=== Hiding decorating elements with the wicket:enclosure tag
+include::_keepControl/keepControl_8.adoc[]
+
+=== Surrounding existing markup with Border
+include::_keepControl/keepControl_10.adoc[]
+
+=== Summary
+include::_keepControl/keepControl_11.adoc[]
