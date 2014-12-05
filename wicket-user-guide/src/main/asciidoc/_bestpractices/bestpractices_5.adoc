@@ -13,7 +13,7 @@ add(loginBox);
 
 Listing 6 shows a poor implementation, because a decision about the visibility is made while instanciating the component. Again, in Wicket instances of components exist for several requests. To reuse the same instance you have to call @loginBox.setVisible(false)@. This is very unhandy, because we always have to call @setVisible()@ and manage the visibility. Furthermore you are going to duplicate the states, because visible is equal to "not logged in". So we have two saved states, one for the business aspect "not logged in" and one for the technical aspect "visible". Both is always equal. This approach is error-prone and fragile, because we always have to pay attention to setting the correct information every time. But this is often forgotten because the logic is widely spread over the code. The solution is the Hollywood principle: "Don't call us, we'll call you.". Take a look at the following diagram illustrating an application flow with some calls. We avoid three calls through the "Hollywood-Principle":http://en.wikipedia.org/wiki/Hollywood_Principle and we just have to instanciate the @LoginBoxPanel@.
 
-!login_calls_hollywood.png!
+image::login_calls_hollywood.png[title="fooBar"]
 
 *Listing 7:*
 

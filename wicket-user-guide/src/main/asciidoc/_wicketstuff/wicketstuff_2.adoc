@@ -2,7 +2,7 @@
 
 Module tinymce offers integration with the namesake JavaScript library that turns our “humble” text-areas into a full-featured HTML WYSIWYG editor:
 
-!tinymce.png!
+image::tinymce.png[title="fooBar"]
 
 To “tinyfy” a textarea component we must use behavior TinyMceBehavior:
 
@@ -13,7 +13,7 @@ textArea.add(new TinyMceBehavior());
 
 By default TinyMceBehavior adds only a basic set of functionalities to our textarea:
 
-!tinymce_basic.png!
+image::tinymce_basic.png[title="fooBar"]
 
 To add more functionalities we must use class TinyMCESettings to register additional TinyMCE plugins and to customize the toolbars buttons. The following code is an excerpt from example page FullFeaturedTinyMCEPage:
 

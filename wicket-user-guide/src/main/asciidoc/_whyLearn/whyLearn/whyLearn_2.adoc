@@ -4,7 +4,7 @@ Component oriented frameworks differ from classic web frameworks in that they bu
 # is built before HTML is sent to client
 # HTML code is generated using this model and not vice versa.
 
-  !requesthandling-general.png!
+  image::requesthandling-general.png[title="fooBar"]
 
   _General schema of page request handling for a component oriented framework_
 

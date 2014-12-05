@@ -94,7 +94,7 @@ Static field @IBehaviorListener.INTERFACE@ is the implementation of @RequestList
 
 The home page of project @CallbackURLExample@ contains a @DropDownChoice@ and a @RadioChoice@ which use our custom behavior. There are also two labels to display the content of the models of the two components:
 
-!CallbackURLExample-screenshot.png!
+image::CallbackURLExample-screenshot.png[title="fooBar"]
 
 {note}
 Implementing interface @IBehaviorListener@ makes a behavior stateful because its callback URL is specific for a given instance of component.
@@ -139,4 +139,4 @@ public void onEvent(IEvent event) {
 
 Project @InterComponetsEventsExample@ provides a concrete example of sending an event to a component (named 'container in the middle') using all the available broadcast methods:
 
-!InterComponentsEventsExample-screenshot.png!
+image::InterComponentsEventsExample-screenshot.png[title="fooBar"]

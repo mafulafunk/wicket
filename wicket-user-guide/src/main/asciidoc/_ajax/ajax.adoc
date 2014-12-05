@@ -85,7 +85,7 @@ When a component is disabled it must be clear to user that an AJAX request is ru
 
 The final result will look like this:
 
-!custom-ajax-call-listener.png!
+image::custom-ajax-call-listener.png[title="fooBar"]
 
 ==== How to implement the listener
 

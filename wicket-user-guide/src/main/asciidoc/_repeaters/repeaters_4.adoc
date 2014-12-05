@@ -58,7 +58,7 @@ h3. Data paging
 
 To enable data paging on a pageable repeater, we must first set the number of items to display per page with method setItemsPerPage(long items). Then, we must attach the repeater to panel PagingNavigator (placed in package @org.apache.wicket.markup.html.navigation.paging@) which is responsible for rendering a navigation bar containing the links illustrated in the following picture:
 
-!paging-navigator.png!
+image::paging-navigator.png[title="fooBar"]
 
 Project PageDataViewExample mixes a DataView component with a PagingNavigator to display the list of all countries of the world sorted by alphabetical order. Here is the initialization code of the project home page:
 

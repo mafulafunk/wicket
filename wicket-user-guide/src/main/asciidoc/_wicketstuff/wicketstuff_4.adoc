@@ -27,6 +27,6 @@ add(new Chart("helloWorld", provider));
 
 *Displayed chart:*
 
-!googlechart.png!
+image::googlechart.png[title="fooBar"]
 
 As we can see in the snippet above, component Chart must be used with <img> tag while the input data returned by IChartData must be a two-dimensional array of double values. 

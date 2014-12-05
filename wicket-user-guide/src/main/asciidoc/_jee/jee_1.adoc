@@ -48,4 +48,4 @@ public class HomePage extends WebPage {
 
 That is all. We can point the browser to the home page of the project and see the greeting message injected into the page:
 
-!EjbInjectionExample.png!
+image::EjbInjectionExample.png[title="fooBar"]

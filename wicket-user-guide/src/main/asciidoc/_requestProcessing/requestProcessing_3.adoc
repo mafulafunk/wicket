@@ -30,7 +30,7 @@ To resolve the right handler for a given HTTP request, the @RequestCycle@ uses a
 
 The following sequence diagram recaps how a request handler is resolved by the @RequestCycle@:
 
-!request-cycle-handler.png!
+image::request-cycle-handler.png[title="fooBar"]
 
 Developers can create additional implementations of IRequestMapper and add them to their application via the mount(IRequestMapper mapper) method of the WebApplication class. In paragraph 10.6 we will see how Wicket uses this method to add built-in mappers for mounted pages.
 

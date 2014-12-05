@@ -4,7 +4,7 @@ h3. Panels and layout areas
 
 First, let's build a custom panel for each layout area (except for 'content' area). For example given the  header area
 
-!header-area.png!
+image::header-area.png[title="fooBar"]
 
 we can build a panel called @HeaderPanel@ with a related markup file called HeaderPanel.html containing the HTML for this area:
 
@@ -158,5 +158,5 @@ public class SimpleLoginPage extends JugTemplate {
 
 Obviously this page doesn't come with a related markup file. You can see the final page in the following picture:
 
-!final-login-page.png!
+image::final-login-page.png[title="fooBar"]
 

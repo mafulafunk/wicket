@@ -2,7 +2,7 @@
 
 Model is essentially a "facade":http://en.wikipedia.org/wiki/Facade_pattern interface which allows components to access and modify their data without knowing any detail about how they are managed or persisted. Every component has at most one related model, while a model can be shared among different components. In Wicket a model is any implementation of the interface @org.apache.wicket.model.IModel@:
 
-!uml-imodel.png!
+image::uml-imodel.png[title="fooBar"]
 
 The IModel interface defines just the methods needed to get and set a data object (getObject() and setObject()), decoupling components from concrete details about the persistence strategy adopted for data. In addition, the level of indirection introduced by models allows access data object only when it is really needed (for example during the rendering phase) and not earlier when it may not be ready to be used.
 

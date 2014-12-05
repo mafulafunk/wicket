@@ -3,7 +3,7 @@ When page class is provided @IPageSource@ delegates page creation to interface @
 
 The following workflow diagram summarizes the mechanism seen so far:
 
-!page-storage.png!
+image::page-storage.png[title="fooBar"]
 
 h3. IPageManager
 

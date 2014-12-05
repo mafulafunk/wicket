@@ -8,7 +8,7 @@ For model objects this could be a serious issue for (at least) two main reasons:
 
 To cope with these problems IModel extends another interface called IDetachable.
 
-!detachable-models.png!
+image::detachable-models.png[title="fooBar"]
 
 This interface provides a method called detach() which is invoked by Wicket at the end of web request processing when data model is no more needed but before serialization occurs. Overriding this method we can clean any reference to data object keeping just the information needed to retrieve it later (for example the id of the table row where our data are stored). In this way we can avoid the serialization of the object wrapped into the model overcoming both the problem with non-serializable objects and the one with large data objects.
 
@@ -17,7 +17,7 @@ Usually detaching operations are strictly dependent on the persistence technolog
 
 The following class diagram summarizes the methods defined inside LoadableDetachableModel.
 
-!loadable-detachable-model.png!
+image::loadable-detachable-model.png[title="fooBar"]
 
 onDetach and onAttach can be overridden in order to obtain further control over the detaching procedure.
 

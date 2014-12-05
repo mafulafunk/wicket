@@ -11,15 +11,15 @@ In this chapter we will see how to use Wicket to build a site layout. The sample
 
 The following picture summarises the layout structure:
 
-!layout.png!
+image::layout.png[title="fooBar"]
 
 Once we have chosen a page layout, our web designer can start building up the site theme. The result is a beautiful mock of our future web pages. Over this mock we can map the original layout areas:
 
-!layout-mock.png!
+image::layout-mock.png[title="fooBar"]
 
 Now in order to have a consistent layout across all the site, we must ensure that each page will include the layout areas seen above. With an old template-based approach we must manually put them inside every page. If we were using JSP we would probably end up using @include@ directive to add layout areas in our pages. We would have one @include@ for each of the areas (except for the content):
 
-!layout-include.png!
+image::layout-include.png[title="fooBar"]
 
 {note}
 For the sake of simplicity we can consider each included area as a static HTML fragment.

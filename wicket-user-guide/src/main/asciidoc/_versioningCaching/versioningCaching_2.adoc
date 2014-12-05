@@ -6,7 +6,7 @@ A new page version is created when a stateful page is requested for the first ti
 
 In the final example of the previous chapter (project LifeCycleStages), you may have noticed the number appended at the end of URL. This number is the page id we are talking about:
 
-!page-id.png!
+image::page-id.png[title="fooBar"]
 
 In this chapter we will use a revised version of this example project where the component hierarchy is modified inside the Link's onClick()method. This is necessary because Wicket creates a new page version only if the page is modified before its method onBeforeRender() is invoked. The code of the new home page is the following:
 
@@ -39,11 +39,11 @@ public class HomePage extends WebPage
 
 Now if we run the new example (project LifeCycleStagesRevisited) and we click on the “Reload” button, a new page version is created and the page id is increased by one:
 
-!reload-page.png!
+image::reload-page.png[title="fooBar"]
 
 If we press the back button the page version previously rendered (and serialized) will be retrieved (i.e. deserialized) and it will be used again to respond to our request (and page id is decremented):
 
-!browser-back.png!
+image::browser-back.png[title="fooBar"]
 
 {note}
 For more details about page storing you can take a look at paragraph "Page storing" from chapter "Wicket Internals". The content of this paragraph is from wiki page https://cwiki.apache.org/confluence/display/WICKET/Page+Storage. 
@@ -91,7 +91,7 @@ By default Wicket persists versions of pages into a session-relative file on dis
 
 The following picture is an overview of these two caching levels:
 
-!wicket-cache.png!
+image::wicket-cache.png[title="fooBar"]
 
 The session-scoped cache is faster then the other memory levels but it contains only the pages used to serve the last request. Wicket allows us to set the maximum amount of memory allowed for the application-scoped cache and for the page store file. Both parameters can be configured via setting interface @org.apache.wicket.settings.IStoreSettings@. 
 
@@ -122,7 +122,7 @@ h3. Page expiration
 
 Page instances are not kept in the user session forever. They can be discarded when the limit set with the setMaxSizePerSession method is reached or (more often) when user session expires. When we ask Wicket for a page id corresponding to a page instance removed from the session, we bump into a  PageExpiredException and we get the following default error page:
 
-!page-expired.png!
+image::page-expired.png[title="fooBar"]
 
 This error page can be customized with the setPageExpiredErrorPage method of the @org.apache.wicket.settings.IApplicationSettings@ interface:
 
