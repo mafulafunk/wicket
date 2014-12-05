@@ -1,1 +1,52 @@
 This section is addressed to developers, who have already made their first experiences with Apache Wicket. Developers who get into Wicket often have difficulties with it because they apply the typical JSF and Struts patterns and approaches. These frameworks primarily use procedural programming methods. In contrast Wicket is strongly based on object oriented patterns. So forget all Struts and JSF patterns, otherwise you won't have fun with Wicket in the long run.
+
+=== Encapsulate components correctly
+include::_bestpractices/bestpractices_1.adoc[]
+
+=== Put models and page data in fields
+include::_bestpractices/bestpractices_2.adoc[]
+
+=== Correct naming for Wicket IDs
+include::_bestpractices/bestpractices_3.adoc[]
+
+=== Avoid changes at the component tree
+include::_bestpractices/bestpractices_4.adoc[]
+
+=== Implement visibilities of components correctly
+include::_bestpractices/bestpractices_5.adoc[]
+
+=== Always use models
+include::_bestpractices/bestpractices_6.adoc[]
+
+=== Do not unwrap models within the constructor hierarchy
+include::_bestpractices/bestpractices_7.adoc[]
+
+=== Pass models extended components
+include::_bestpractices/bestpractices_8.adoc[]
+
+=== Validators must not change any data or models
+include::_bestpractices/bestpractices_9.adoc[]
+
+=== Do not pass components to constructors
+include::_bestpractices/bestpractices_10.adoc[]
+
+=== Use the Wicket session only for global data
+include::_bestpractices/bestpractices_11.adoc[]
+
+=== Do not use factories for components
+include::_bestpractices/bestpractices_12.adoc[]
+
+=== Every page and component must be tested
+include::_bestpractices/bestpractices_13.adoc[]
+
+=== Avoid interactions with other servlet filters
+include::_bestpractices/bestpractices_14.adoc[]
+
+=== Cut small classes and methods
+include::_bestpractices/bestpractices_15.adoc[]
+
+=== The argument "Bad documentation"
+include::_bestpractices/bestpractices_16.adoc[]
+
+=== Summary
+include::_bestpractices/bestpractices_17.adoc[]

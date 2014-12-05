@@ -1,0 +1,4 @@
+
+=== Page storing
+include::_internals/pagestoring.adoc[]
+

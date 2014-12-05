@@ -1,1 +1,19 @@
 In this chapter we will learn some advanced topics which have not been covered yet in the previous chapters but which are nonetheless essential to make the most of Wicket and to build sophisticated web applications.
+
+=== Enriching components with behaviors
+include::_advanced/advanced_1.adoc[]
+
+Generating callback URLs with IRequestListener
+include::_advanced/advanced_2.adoc[]
+
+=== Initializers
+include::_advanced/advanced_3.adoc[]
+
+=== Using JMX with Wicket
+include::_advanced/advanced_4.adoc[]
+
+=== Generating HTML markup from code
+include::_advanced/advanced_5.adoc[]
+
+=== Summary
+include::_advanced/advanced_6.adoc[]

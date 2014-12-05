@@ -1,1 +1,8 @@
 
+=== Switching Wicket to DEPLOYMENT mode
+include::_maven/maven_1.adoc[]
+
+=== Creating a Wicket project from scratch and importing it into our favourite IDE
+include::_maven/maven_2.adoc[]
+  
+

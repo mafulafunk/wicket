@@ -8,3 +8,10 @@ Native WebSocket works only when both the browser and the web containers support
 Currently supported web containers are Jetty 7.5+ , Tomcat 7.0.27+ and JBoss WildFly 8.0.0+.
 Supported browsers can be found at [caniuse.com|http://caniuse.com/#search=websocket].
 {warning}
+
+include::_nativewebsockets/nativewebsockets_1.adoc[]How does it work ?
+include::_nativewebsockets/nativewebsockets_2.adoc[]How to use
+include::_nativewebsockets/nativewebsockets_3.adoc[]Client-side APIs
+include::_nativewebsockets/nativewebsockets_4.adoc[]Testing
+include::_nativewebsockets/nativewebsockets_5.adoc[]Differences with Wicket-Atmosphere module.
+include::_nativewebsockets/nativewebsockets_6.adoc[]FAQ

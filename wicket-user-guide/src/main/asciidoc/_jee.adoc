@@ -9,3 +9,15 @@ Wicket can be easily integrated with enterprise containers using component insta
 Wicket distribution and project "WicketStuff":https://github.com/wicketstuff already provide a set of built-in listeners to integrate our applications with EJB 3.1 compliant containers (like JBoss Seam) or with some of the most popular enterprise frameworks like "Guice":http://code.google.com/p/google-guice/ or Spring.
 
 In this chapter we will see two basic examples of injecting a container-defined object into a page using first an implementation of the EJB 3.1 specifications (project "OpenEJB":http://openejb.apache.org/ ) and then using Spring.
+
+=== Integrating Wicket with EJB
+include::_jee/jee_1.adoc[]
+
+=== Integrating Wicket with Spring
+include::_jee/jee_2.adoc[]
+
+=== JSR-330 annotations
+include::_jee/jee_3.adoc[]
+
+=== Summary
+include::_jee/jee_4.adoc[]
