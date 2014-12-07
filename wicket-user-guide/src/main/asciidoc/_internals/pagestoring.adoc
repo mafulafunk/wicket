@@ -19,13 +19,14 @@ h3. IPageStore
 
 @org.apache.wicket.pageStore.IPageStore@'s role is to mediate the storing and loading of pages done by the underlying @IDataStore@. The default implementation @org.apache.wicket.pageStore.DefaultPageStore@ pre-processes the pages before passing them to @IDataStore#storeData(String, int, byte[])@ and to post-processes them after @IDataStore#getData(String, int)@. The processing consists of transforming the page instance to @org.apache.wicket.pageStore.DefaultPageStore.SerializedPage@. This is a struct of:
 
-{code}
+[source, java]
+----
 {
    sessionId: String,
    pageId : int,
    data : byte[]
 }
-{code}
+----
 
 i.e. this is the serialized page instance (data) plus additional information needed to be able to easily find it later (sessionId, pageId).
 
@@ -57,7 +58,8 @@ Wicket comes with 2 default eviction strategies to keep the size of the http ses
 * *org.apache.wicket.pageStore.memory.MemorySizeEvictionStrategy* - specifies the maximum amount of memory for pages per http session.
 
 To configure it:
-{code}
+[source, java]
+----
 MyApp#init()
 {
    super.init();
@@ -70,5 +72,5 @@ MyApp#init()
        }
    }
 }
-{code}
+----
 

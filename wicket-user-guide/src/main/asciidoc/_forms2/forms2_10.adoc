@@ -12,7 +12,8 @@ To avoid these kinds of problems we should build a stateless login page which do
 
 *HTML:*
 
-{code:html}
+[source, html]
+----
 <html>
    <head>
       <meta charset="utf-8" />
@@ -32,11 +33,12 @@ To avoid these kinds of problems we should build a stateless login page which do
       <div wicket:id="feedbackPanel"></div>
    </body>
 </html>
-{code}
+----
 
 *Java code:*
 
-{code}
+[source, java]
+----
 public class HomePage extends WebPage {
     private Label sessionType;
     private String password;
@@ -73,6 +75,6 @@ public class HomePage extends WebPage {
           sessionType.setDefaultModelObject("permanent");
     }
 }
-{code}
+----
 
 Label sessionType shows if current session is temporary or not and is set inside onBeforeRender(): if our page is really stateless the session will be always temporary. We have also inserted a feedback panel in the home page that shows if the credentials are correct. This was done to make the example form more interactive.

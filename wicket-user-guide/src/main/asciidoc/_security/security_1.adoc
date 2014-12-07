@@ -38,7 +38,8 @@ Project @BasicAuthenticationExample@ is a basic example of form-based authentica
 
 The homepage of the project contains only a link to page @AuthenticatedPage@ which can be accessed only if user is signed in. The code of @AuthenticatedPage@ is this following:
 
-{code}
+[source, java]
+----
 public class AuthenticatedPage extends WebPage {
    @Override
    protected void onConfigure() {
@@ -70,13 +71,14 @@ public class AuthenticatedPage extends WebPage {
       });
    }
 }
-{code}
+----
 
 Page @AuthenticatedPage@ checks inside onConfigure if user is signed in and if not, it redirects her/him to the sign in page with method @restartResponseAtSignInPage@. The page contains also a link to the homepage and another link that signs out user. 
 
 The sign in page is implemented in class @SignInPage@ and contains the form used to authenticate users:
 
-{code}
+[source, java]
+----
 public class SignInPage extends WebPage {
    private String username;
    private String password;
@@ -106,7 +108,7 @@ public class SignInPage extends WebPage {
       add(form);
    }
 }
-{code}
+----
 
 The form is responsible for handling user authentication inside its method onSubmit. The username and password are passed to @AuthenticatedWebSession@'s method @signIn(username, password)@ and if authentication succeeds, the user is redirected to the original page with method @continueToOriginalDestination@.
 
@@ -114,7 +116,8 @@ The session class and the application class used in the project are reported her
 
 *Session class:*
 
-{code}
+[source, java]
+----
 public class BasicAuthenticationSession extends AuthenticatedWebSession {
 
 	public BasicAuthenticationSession(Request request) {
@@ -132,11 +135,12 @@ public class BasicAuthenticationSession extends AuthenticatedWebSession {
 		return null;
 	}
 }
-{code}
+----
 
 *Application class:*
 
-{code}
+[source, java]
+----
 public class WicketApplication extends AuthenticatedWebApplication{    	
 	@Override
 	public Class<HomePage> getHomePage(){
@@ -153,7 +157,7 @@ public class WicketApplication extends AuthenticatedWebApplication{
 		return SignInPage.class;
 	}
 }
-{code}
+----
 
 The authentication logic inside authenticate has been kept quite trivial in order to make the code as clean as possible. Please note also that session class must have a constructor that accepts an instance of class @Request@.
 
@@ -163,9 +167,10 @@ Method @restartResponseAtSignInPage@ is an example of redirecting user to an int
 
 Component's method @redirectToInterceptPage(Page)@ works in much the same way as @restartResponseAtSignInPage@ but it allows us to specify which page to use as intermediate page:
 
-{code}
+[source, java]
+----
     redirectToInterceptPage(intermediatePage);
-{code}
+----
 
 {note}
 Since both @restartResponseAtSignInPage@ and @redirectToInterceptPage@ internally throw an exception, the code placed after them will not be executed.

@@ -16,7 +16,8 @@ h3. Component DataView
 Class @org.apache.wicket.markup.repeater.data.DataView@ is the simplest pageable repeater shipped with Wicket. DataView comes with abstract method populateItem(Item) that must be implemented to configure children components. In the following example we use a DataView to display a list of Person objects in a HTML table:
 
 *HTML:*
-{code:html}
+[source, html]
+----
 <table>
 	<tr>
 	   <th>Name</th><th>Surename</th><th>Address</th><th>Email</th>
@@ -25,10 +26,11 @@ Class @org.apache.wicket.markup.repeater.data.DataView@ is the simplest pageable
 	   <td wicket:id="dataRow"></td>
 	</tr>
 </table>
-{code}
+----
 
 *Java Code:*
-{code}
+[source, java]
+----
 //method loadPersons is defined elsewhere
 List<Person> persons = loadPersons();
 ListDataProvider<Person> listDataProvider = new ListDataProvider<Person>(persons);
@@ -48,7 +50,7 @@ DataView<Person> dataView = new DataView<Person>("rows", listDataProvider) {
   }
 };
 add(dataView);
-{code}
+----
 
 Please note that in the code above we have used also a RepeatingView component to populate the rows of the table. 
 
@@ -63,7 +65,8 @@ image::paging-navigator.png[title="fooBar"]
 Project PageDataViewExample mixes a DataView component with a PagingNavigator to display the list of all countries of the world sorted by alphabetical order. Here is the initialization code of the project home page:
 
 *HTML:*
-{code:html}
+[source, html]
+----
 <table>
   <tr>
     <th>ISO 3166-1</th><th>Name</th><th>Long name</th><th>Capital</th><th>Population</th>
@@ -72,10 +75,11 @@ Project PageDataViewExample mixes a DataView component with a PagingNavigator to
     <td wicket:id="dataRow"></td>
   </tr>
 </table>
-{code}
+----
 
 *Java Code:*
-{code}
+[source, java]
+----
 public HomePage(final PageParameters parameters) {
   super(parameters);
   //method loadCountriesFromCsv is defined elsewhere in the class.
@@ -101,7 +105,7 @@ public HomePage(final PageParameters parameters) {
   add(dataView);
   add(new PagingNavigator("pagingNavigator", dataView));
 }
-{code}
+----
 
 The data of a single country (ISO code, name, long name, capital and population) are handled with an array of strings. The usage of PagingNavigator it's quite straightforward as we need to simply pass the pageable repeater to its constructor. 
 

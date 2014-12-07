@@ -7,7 +7,8 @@ RefreshingView defines abstract methods populateItem(Item) and getItemModels(). 
 The following code is a version of the previous example that uses @RefreshingView@ in place of @ListView@:
 
 *HTML:*
-{code:html}
+[source, html]
+----
 ...
 	<body>
 		<div id="bd" style="display: table;">
@@ -18,10 +19,11 @@ The following code is a version of the previous example that uses @RefreshingVie
 		</div>
 	</body>
 ...
-{code}
+----
 
 *Java Code (Page Constructor):*
-{code}
+[source, java]
+----
 public HomePage(final PageParameters parameters) {
    //define the list of models to use
    final List<IModel<Person>> persons = new ArrayList<IModel<Person>>();
@@ -41,7 +43,7 @@ public HomePage(final PageParameters parameters) {
 }			
    });
 }
-{code}
+----
 
 h3. Item reuse strategy
 

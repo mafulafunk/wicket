@@ -6,7 +6,8 @@ To register a component instantiation listener in Wicket we must use @Applicatio
 
 The following initialization code is taken from project @EjbInjectionExample@: 
 
-{code}
+[source, java]
+----
 public class WicketApplication extends WebApplication
 {    	
        //Constructor...
@@ -18,20 +19,22 @@ public class WicketApplication extends WebApplication
 		getComponentInstantiationListeners().add(new JavaEEComponentInjector(this));		
 	}	
 }
-{code}
+----
 
 In this example the object that we want to inject is a simple class containing a greeting message:
 
-{code}
+[source, java]
+----
 @ManagedBean
 public class EnterpriseMessage {
 	public String message = "Welcome to the EJB world!";
 }
-{code}
+----
 
 Please note that we have used annotation ManagedBean to decorate our object. Now to inject it into the home page we must add a field of type EnterpriseMessage and annotate it with annotation @EJB:
 
-{code}
+[source, java]
+----
 public class HomePage extends WebPage {
 	
 	@EJB
@@ -44,7 +47,7 @@ public class HomePage extends WebPage {
 		add(new Label("message", enterpriseMessage.message));
 	}
 }
-{code}
+----
 
 That is all. We can point the browser to the home page of the project and see the greeting message injected into the page:
 

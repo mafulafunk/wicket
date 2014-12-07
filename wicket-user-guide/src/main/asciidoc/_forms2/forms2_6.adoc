@@ -5,7 +5,8 @@ As you might already known, HTLM doesn't allow to have nested forms. However wit
 This can be useful if we want to split a big form into smaller ones in order to reuse them and to better distribute responsibilities among different components.
 Forms can be nested to an arbitrary level:
 
-{code:html}
+[source, html]
+----
 <form wicket:id="outerForm"> 
 	...
 	<form wicket:id="innerForm"> 
@@ -15,7 +16,7 @@ Forms can be nested to an arbitrary level:
 		</form> 
 	</form> 
 </form>
-{code}
+----
 
 When a form is submitted also its nested forms are submitted and they participate in the validation step. This means that if a nested form contains invalid input values, the outer form won't be submitted. On the contrary, nested forms can be singularly submitted without depending on the status of their outer form.
 

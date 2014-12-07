@@ -6,18 +6,20 @@ AJAX components and behaviors shipped with Wicket expose one or more callback me
 
 For example component AjaxLink (in package @org.apache.wicket.ajax.markup.html@) defines abstract method @onClick(AjaxRequestTarget target)@ which is executed when user clicks on the component:
 
-{code}
+[source, java]
+----
 new AjaxLink("ajaxLink"){
 	@Override
 	public void onClick(AjaxRequestTarget target) {
 	    //some server side code...
 	}  	
 };
-{code}
+----
 
 Using AjaxRequestTarget we can specify the content that must be sent back to the client as response to the current AJAX request. The most commonly used method of this interface is probably @add(Component... components)@. With this method we tell Wicket to render again the specified components and refresh their markup via AJAX:
 
-{code}
+[source, java]
+----
 new AjaxLink("ajaxLink"){
 	@Override
 	public void onClick(AjaxRequestTarget target) {
@@ -26,11 +28,12 @@ new AjaxLink("ajaxLink"){
 	    target.add(label);
 	}  	
 };
-{code}
+----
 
 Components can be refreshed via Ajax only if they have rendered a markup id for their related tag. As a consequence, we must remember to set a valid id value on every component we want to add to @AjaxRequestTarget@. This can be done using one of the two methods seen in paragraph 4.3:
 
-{code}
+[source, java]
+----
 final Label label = new Label("labelComponent", "Initial value.");
 //autogenerate a markup id
 label.setOutputMarkupId(true);
@@ -44,18 +47,19 @@ new AjaxLink("ajaxLink"){
 	    target.add(label);
 	}  	
 };
-{code}
+----
 
 Another common use of AjaxRequestTarget is to prepend or append some JavaScript code to the generated response. For example the following AJAX link displays an alert box as response to user's click:
 
-{code}
+[source, java]
+----
 new AjaxLink("ajaxLink"){
 	@Override
 	public void onClick(AjaxRequestTarget target) {
 	    target.appendJavaScript(";alert('Hello!!');");
 	}  	
 };
-{code}
+----
 
 {warning}
 Repeaters component that have @org.apache.wicket.markup.repeater.AbstractRepeater@ as base class (like @ListView@, @RepeatingView@, etc...) can not be directly updated via AJAX.

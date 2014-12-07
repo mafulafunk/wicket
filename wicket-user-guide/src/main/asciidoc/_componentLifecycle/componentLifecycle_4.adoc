@@ -10,7 +10,8 @@ The most important hook method of this stage is probably @onBeforeRender()@. Thi
 
 If we want add/remove children components this is the right place to do it. In the next example (project LifeCycleStages) we will create a page which alternately displays two different labels, swapping between them each time it is rendered:
 
-{code}
+[source, java]
+----
 public class HomePage extends WebPage
 {
 	private Label firstLabel;
@@ -38,7 +39,7 @@ public class HomePage extends WebPage
 		super.onBeforeRender();
 	}
 }
-{code}
+----
 
 The code inside @onBeforeRender()@ is quite trivial as it just checks which label among @firstLabel@ and @secondLabel@ is currently inserted into the component hierarchy and it replaces the inserted label with the other one.
 
@@ -59,7 +60,8 @@ Method @onComponentTag(ComponentTag)@ is called to process component tag, which 
 
 *Markup code:*
 
-{code:html}
+[source, html]
+----
 <head>
   <meta charset="utf-8" />
   <title></title>
@@ -67,11 +69,12 @@ Method @onComponentTag(ComponentTag)@ is called to process component tag, which 
 <body>		
   <h1 wicket:id="helloMessage"></h1>		
 </body>
-{code}
+----
 
 *Java code:*
 
-{code}
+[source, java]
+----
 public class HomePage extends WebPage {
    public HomePage() {
       add(new Label("helloMessage", "Hello World"){
@@ -86,11 +89,12 @@ public class HomePage extends WebPage {
       });
     }
 }
-{code}
+----
 
 *Generated markup:*
 
-{code:html}
+[source, html]
+----
 <head>
   <meta charset="utf-8" />
   <title></title>
@@ -98,7 +102,7 @@ public class HomePage extends WebPage {
 <body>		
   <span wicket:id="helloMessage" style="font-weight:bold">Hello World</span>		
 </body>
-{code}
+----
 
 Just like we do with @onInitialize@, if we decide to override @onComponentTag@ we must remember to call the same method of the super class because also this class may also customize the tag. Overriding @onComponentTag@ is perfectly fine if we have to customize the tag of a specific component, but if we wanted to reuse the code across different components we should consider to use a behavior in place of this hook method.
 
@@ -110,7 +114,8 @@ Method @onComponentTagBody(MarkupStream, ComponentTag)@ is called to process the
 
 @onComponentTagBody@ can be used in combination with the @Component@'s method @replaceComponentTagBody@ to render a custom body under specific conditions. For example (taken from project OnComponentTagExample) we can display a brief description instead of the body if the label component is disabled:
 
-{code}
+[source, java]
+----
 public class HomePage extends WebPage {
    public HomePage() {
 
@@ -126,6 +131,6 @@ public class HomePage extends WebPage {
       });   
     }
 }
-{code}
+----
 
 Note that the original version of @onComponentTagBody@ is invoked only when we want to preserve the standard rendering mechanism for the tag's body (in our example this happens when the component is enabled).

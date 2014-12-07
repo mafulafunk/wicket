@@ -6,17 +6,19 @@ h3. ResourceModel
 
 Model @org.apache.wicket.model.ResourceModel@ acts just like the read-only model we have implemented in paragraph 12.3.4. It simply retrieves a string resource corresponding to a given key:
 
-{code}
+[source, java]
+----
 //build a ResourceModel for key 'greetingMessage'
 new ResourceModel("greetingMessage");
-{code}
+----
 
 We can also specify a default value to use if the requested resource is not found:
 
-{code}
+[source, java]
+----
 //build a ResourceModel with a default value
 new ResourceModel("notExistingResource", "Resource not found.");
-{code}
+----
 
 h3. StringResourceModel
 
@@ -24,7 +26,8 @@ Model @org.apache.wicket.model.StringResourceModel@ allows to work with complex 
 
 Bean:
 
-{code}
+[source, java]
+----
 public class Order implements Serializable {
 	
 	private Date orderDate;
@@ -37,11 +40,12 @@ public class Order implements Serializable {
 	}
 	//Getters and setters for private fields
 }	
-{code}
+----
 
 Enum:
 
-{code}
+[source, java]
+----
 public enum ORDER_STATUS {
 
 	PAYMENT_ACCEPTED(0),
@@ -52,42 +56,47 @@ public enum ORDER_STATUS {
 	private int code;
 	//Getters and setters for private fields	
 }
-{code}
+----
 
 Now what we want to do in this page is to print a simple label which displays the status of an order and the date on  which the order has been submitted. All the informations about the order will be passed to a StringResourceModel with a model containing the bean Order. The bundle in use contains the following key/value pairs:
 
-{code}
+[source, java]
+----
 orderStatus.0=Your payment submitted on ${orderDate} has been accepted.
 orderStatus.1=Your order submitted on ${orderDate} is in progress.
 orderStatus.2=Your order submitted on ${orderDate} has been shipped.
 orderStatus.3=Your order submitted on ${orderDate} has been delivered.
-{code}
+----
 
 The values above contain a property expression (${orderDate}) that will be evaluated on the data object of the model. The same technique can be applied to the resource key in order to load the right resource according to the state of the order:
 
-{code}
+[source, java]
+----
 Order order = new Order(new Date(), ORDER_STATUS.IN_PROGRESS);
 add(new Label("orderStatus", new StringResourceModel("orderStatus.${status.code}", Model.of(order))));
-{code}
+----
 
 As we can see in the code above also the key contains a property expression (${status.code}) which makes its value dynamic. In this way the state of an object (an Order in our example) can determinate which resource will be loaded by StringResourceModel. If we don't use properties expressions we can provide a null value as model and in this case StringResourceModel will behave exactly as a ResourceModel. StringResourceModel supports also the same parameter substitution used by standard class java.text.MessageFormat. Parameters can be generic objects but if we use a model as parameter, StringResourceModel will use the data object inside it as actual value (it will call getObject on the model). Parameters are passed to constructor as a vararg argument. Here is an example of usage of parameter substitution:
 
 Java code:
 
-{code}
+[source, java]
+----
 PropertyModel propertyModel = new PropertyModel<Order>(order, "orderDate");
 //build a string model with two parameters: a property model and an integer value
 StringResourceModel srm = new StringResourceModel("orderStatus.delay", null, propertyModel, 3);
-{code}
+----
 
 Bundle:
 
-{code}
+[source, java]
+----
 orderStatus.delay=Your order submitted on ${0} has been delayed by {1} days.
-{code}
+----
 
 One further parameter we can specify when we build a StringResourceModel is the component that must be used by the lookup algorithm. Normally this parameter is not relevant, but if we need to use a particular bundle owned by a component not considered by the algorithm, we can specify this component as second parameter. If we pass all possible parameters to StringResourceModel's constructor we obtain something like this: 
 
-{code}
+[source, java]
+----
 new StringResourceModel("myKey", myComponent, myModel, param1, param2, param3,...);
-{code}
+----

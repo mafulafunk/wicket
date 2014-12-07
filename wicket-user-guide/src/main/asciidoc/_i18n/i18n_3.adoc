@@ -28,35 +28,39 @@ In order to make a resource specific for a given child component, we can prefix 
 
 Page code:
 
-{code}
+[source, java]
+----
 add(new Label("label",new ResourceModel("labelValue")));
 add(new Label("anotherLabel",new ResourceModel("labelValue")));
-{code}
+----
 
 Page bundle:
 
-{code}
+[source, java]
+----
 labelValue=Default value
 anotherLabel.labelValue=Value for anotherLabel
-{code}
+----
 
 Label with id anotherLabel will display the value 'Value for anotherLabel' while label label will display 'Default value'. In a similar fashion, parent containers can specify a resource for a nested child component prepending also its relative path (the path is dot-separated):
 
 Page code:
 
-{code}
+[source, java]
+----
 Form form = new Form("form");
 form.add(new Label("anotherLabel",new ResourceModel("labelValue")));
 add(form);
-{code}
+----
 
 Page bundle:
 
-{code}
+[source, java]
+----
 labelValue=Default value
 anotherLabel.labelValue=Value for anotherLabel
 form.anotherLabel.labelValue=Value for anotherLabel inside form
-{code}
+----
 
 With the code and the bundle above, the label inside the form will display the value 'Value for anotherLabel inside form'.
 
@@ -88,7 +92,8 @@ Wicket implements the default lookup algorithm using the strategy pattern1. The 
 
 Developer can customize lookup algorithm removing default resource loaders or adding custom implementations to the list of the resource loaders in use. This task can be accomplished using method getStringResourceLoaders of setting interface @org.apache.wicket.settings.IResourceSettings@:
 
-{code}
+[source, java]
+----
 @Override
 public void init()
 {
@@ -97,4 +102,4 @@ public void init()
   List<IStringResourceLoader> resourceLoaders = getResourceSettings(). 
                                                 getStringResourceLoaders();
   //customize the list...
-{code}
+----

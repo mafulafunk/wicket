@@ -10,12 +10,13 @@ A submitting component is added to a form just like any other child component us
 
 A form can have any number of submitting components and we can specify which one among them is the default one by calling the Form's method setDefaultButton(IFormSubmittingComponent  component). The default submitter is the one that will be used when user presses 'Enter' key in a field of the form. In order to make the default button work, Wicket will add to our form a hidden <div> tag containing a text field and a submit button with some JavaScript code to trigger it:
 
-{code:html}
+[source, html]
+----
 <div style="width:0px;height:0px;position:absolute;left:-100px;top:-100px;overflow:hidden">
 	<input type="text" autocomplete="off"/>
 	<input type="submit" name="submit2" onclick=" var b=document...."/>
 </div>
-{code}
+----
 
 Just like Wicket forms, interface IFormSubmitter defines methods onSubmit and onError. These two methods have the priority over the namesake methods of the form, meaning that when a form is submitted with an IFormSubmitter, the onSubmit of the submitter is called before the one of the form. Similarly, if validation errors occurs during the first step of form processing, submitter's method onError is called before the form's one.
 
@@ -31,7 +32,8 @@ In the following snippet we have a form with two submit buttons bound to an <inp
 
 *HTML:*
 
-{code:html}
+[source, html]
+----
 <body>
 		<form wicket:id="form">
 			Username: <input type="text" wicket:id="username"/>
@@ -40,11 +42,12 @@ In the following snippet we have a form with two submit buttons bound to an <inp
 			<input type="submit" wicket:id="submit2"/>
 		</form>
 </body>
-{code}
+----
 
 *Java code:*
 
-{code}
+[source, java]
+----
 public class HomePage extends WebPage {
 	
     public HomePage(final PageParameters parameters) {		
@@ -59,11 +62,12 @@ public class HomePage extends WebPage {
 		add(form);
     }
 }
-{code}
+----
 
 *Generated markup:*
 
-{code:html}
+[source, html]
+----
 <form wicket:id="form" id="form1" method="post" action="?0-1.IFormSubmitListener-form">
    <div>
       ...
@@ -75,7 +79,7 @@ public class HomePage extends WebPage {
    <input type="submit" wicket:id="submit1" name="submit1" id="submit13" value="First submitter"/>
    <input type="submit" wicket:id="submit2" name="submit2" id="submit22" value="Second submitter"/>
 </form>
-{code}
+----
 
 Another component that can be used to submit a form is @org.apache.wicket.markup.html.form.SubmitLink@. This component uses JavaScript to submit the form. Like the name suggests, the component can be used with the <a> tag but it can be also bound to any other tag that supports the event handler onclick. When used with the <a> tag, the JavaScript code needed to submit the form will be placed inside href attribute while with other tags the script will go inside the event handler onclick.
 
@@ -83,7 +87,8 @@ A notable difference between this component and Button is that SubmitLink can be
 
 *HTML:*
 
-{code:html}
+[source, html]
+----
 <html xmlns:wicket="http://wicket.apache.org">
 <head>
 	</head>
@@ -97,11 +102,12 @@ A notable difference between this component and Button is that SubmitLink can be
 		</button>
 	</body>
 </html>
-{code}
+----
 
 *Java code:*
 
-{code}
+[source, java]
+----
 public class HomePage extends WebPage {
 	
     public HomePage(final PageParameters parameters) {		
@@ -113,7 +119,7 @@ public class HomePage extends WebPage {
 		add(form);
     }
 }
-{code}
+----
 
 h3. Disabling default form processing
 

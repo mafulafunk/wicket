@@ -6,10 +6,11 @@ image::tinymce.png[title="fooBar"]
 
 To “tinyfy” a textarea component we must use behavior TinyMceBehavior:
 
-{code}
+[source, java]
+----
 TextArea textArea = new TextArea("textArea", new Model(""));
 textArea.add(new TinyMceBehavior());
-{code}
+----
 
 By default TinyMceBehavior adds only a basic set of functionalities to our textarea:
 
@@ -17,7 +18,8 @@ image::tinymce_basic.png[title="fooBar"]
 
 To add more functionalities we must use class TinyMCESettings to register additional TinyMCE plugins and to customize the toolbars buttons. The following code is an excerpt from example page FullFeaturedTinyMCEPage:
 
-{code}
+[source, java]
+----
 TinyMCESettings settings = new TinyMCESettings(
                        TinyMCESettings.Theme.advanced);
 //...
@@ -41,6 +43,6 @@ settings.setResizing(true);
 //...
 TextArea textArea = new TextArea("ta", new Model(TEXT));
 textArea.add(new TinyMceBehavior(settings));
-{code}
+----
 
 For more configuration examples see pages inside package wicket.contrib.examples.tinymce in the example project of the module.

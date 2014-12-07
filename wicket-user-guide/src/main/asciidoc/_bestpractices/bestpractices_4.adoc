@@ -4,7 +4,8 @@ You should consider Wicket's component tree a constant and fixed skeleton which 
 
 *Listing 5:*
 
-{code}
+[source, java]
+----
 // typical for struts
 if(MySession.get().isNotLoggedIn()) {
     add(new LoginBoxPanel("login"))
@@ -12,6 +13,6 @@ if(MySession.get().isNotLoggedIn()) {
 else {
     add(new EmptyPanel("login"))
 }
-{code}
+----
 
 Instead of constructing @LoginBoxPanel@ conditionally, it is recommended to always add the panel  and control the visibility by overriding @isVisible()@. So the component @LoginBoxPanel@ is responsible for displaying itself. We move the responsibility into the same component which executes the login. Brilliant! Cleanly encapsulated business logic. There is no decision from outside, the component handles all the logic. You can see another example in "Implement visibilities of components correctly".

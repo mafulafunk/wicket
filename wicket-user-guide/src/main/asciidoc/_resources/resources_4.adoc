@@ -16,7 +16,8 @@ Header entries are instances of abstract class @org.apache.wicket.markup.head.He
 
 In the following example our custom component loads a CSS file as a package resource (placed in the same package) and it adds it to header section. 
 
-{code}
+[source, java]
+----
 public class MyComponent extends Component{
 
   @Override
@@ -28,4 +29,4 @@ public class MyComponent extends Component{
     response.render(cssItem);
   }
 }
-{code}
+----

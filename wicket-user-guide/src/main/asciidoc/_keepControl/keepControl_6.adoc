@@ -2,7 +2,8 @@ Panel's markup can also contain HTML tags which must go inside header section of
 
 Considering the markup of a generic panel, we can use @<wicket:head>@ tag in this way:
 
-{code:html}
+[source, html]
+----
 <wicket:head>
 	<script type="text/javascript">
 	  	function myPanelFunction(){
@@ -21,7 +22,7 @@ Considering the markup of a generic panel, we can use @<wicket:head>@ tag in thi
 
 	</wicket:panel>
 </body>	
-{code}
+----
 
 Wicket will take care of placing the content of @<wicket:head>@ inside the @<head>@ tag of the final page.
 

@@ -4,16 +4,18 @@ In situations like these component @org.apache.wicket.markup.html.WebMarkupConta
 
 Suppose also that this information box is a @<div>@ tag like this inside the page:
 
-{code:html}
+[source, html]
+----
 <div wicket:id="informationBox">
    //here's the body
    You've got <span wicket:id="messagesNumber"></span> new messages.
 </div>
-{code}
+----
 
 Under those conditions we can consider using a @WebMarkupContainer@ component rather than implementing a new panel. The code needed to handle the information box inside the page could be the following:
 
-{code}
+[source, java]
+----
 //Page initialization code
 WebMarkupContainer informationBox = new WebMarkupContainer ("informationBox");
 informationBox.add(new Label("messagesNumber", messagesNumber));
@@ -21,6 +23,6 @@ add(informationBox);
 
 //If there are no new messages, hide informationBox
 informationBox.setVisible(false);
-{code}
+----
 
 As you can see in the snippet above we can handle our information box from Java code as we do with any other Wicket component.

@@ -10,9 +10,10 @@ h3. Class Locale and ResourceBundle
 
 Class java.util.Locale represents a specific country or language of the world and is used in Java to retrieve other locale-dependent informations like numeric and date formats, the currency in use in a country and so on. Such kind of informations are accessed through special entities called resource bundles which are implemented by class @java.util.ResourceBundle@. Every resource bundle is identified by a full name which is built using four parameters: a base name (which is required), a language code, a country code and a variant (which are all optional). These three optional parameters are provided by an instance of Locale with its three corresponding getter methods: getLanguage(), getCountry() and getVariant(). Parameter language code is a lowercase ISO 639 2-letter code (like zh for Chinese, de for German and so on) while country code is an uppercase ISO 3166 2-letter code (like CN for China, DE for Germany and so on). The final full name will have the following structure (NOTE: tokens inside squared brackets are optional):
 
-{code}
+[source, java]
+----
 <base name>[_<language code>[_<COUNTRY_CODE>[_<variant code>]]]
-{code}
+----
 
 For example a bundle with MyBundle as base name and localized for Mandarin Chinese (language code zh, country code CH, variant cmn) will have MyBundle_zh_CH_cmn as full name. A base name can be a fully qualified class name, meaning that it can include a package name before the actual base name. The specified package will be the container of the given bundle. For example if we use org.foo.MyBundle as base name, the bundle named MyBundle will be searched inside package org.foo. The actual base name (MyBundle in our example) will be used to build the full name of the bundle following the same rules seen above.
 @ResourceBundle@ is an abstract factory class, hence it exposes a number of factory methods named  getBundle to load a concrete bundle. Without going into too much details we can say that a bundle corresponds to a file in the classpath. To find a file for a given bundle, getBundle needs first to generate an ordered list of candidate bundle names. These names are the set of all possible full names for a given bundle. For example if we have org.foo.MyBundle as base name and the current locale is the one seen before for Mandarin Chinese, the candidate names will be:

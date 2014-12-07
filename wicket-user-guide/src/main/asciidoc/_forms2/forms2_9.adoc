@@ -18,7 +18,8 @@ In order to implement such a component, we can make a subclass of FormComponentP
 
 Our custom component will contain two children components: a text field to let user insert and edit a temperature value and a label to display the letter corresponding to user's temperature scale (F for Fahrenheit and C for Celsius). The resulting markup file is the following:
 
-{code:html}
+[source, html]
+----
 <html>
 <head>
 </head>
@@ -30,11 +31,12 @@ Our custom component will contain two children components: a text field to let u
 	</wicket:panel>
 </body>
 </html>
-{code}
+----
 
 As shown in the markup above FormComponentPanel uses the same <wicket:panel> tag used by Panel to define its markup. Now let's see the Java code of the new form component starting with the onInitialize() method:
 
-{code}
+[source, java]
+----
 public class TemperatureDegreeField extends FormComponentPanel<Double> {
 	
 	private TextField<Double> userDegree;
@@ -65,7 +67,7 @@ public class TemperatureDegreeField extends FormComponentPanel<Double> {
                            Model<Double>()));
 		userDegree.setType(Double.class);
 	}
-{code}
+----
 
 Inside the onInitialize method we have created a read-only model for the label that displays the letter corresponding to the user's temperature scale. To determinate which temperature scale is in use, we retrieve the Locale from the session by calling Component's getLocale() method (we will talk more about this method in chapter 12). Then, if locale is the one corresponding to the United States, the chosen scale will be Fahrenheit, otherwise it will be considered as Celsius. 
 
@@ -73,7 +75,8 @@ In the final part of onInitialize() we add the two components to our custom form
 
 Now we can look at the rest of the code containing the convertInput and onBeforeRender methods:
 
-{code}
+[source, java]
+----
 // continued example
 	@Override
 	protected void convertInput() {
@@ -115,7 +118,7 @@ Now we can look at the rest of the code containing the convertInput and onBefore
 		userDegree.setModelObject(userDegreeVal);
 	}
 }
-{code}
+----
 
 Since our component does not directly receive the user input, convertInput() must read this value from the inner text field using FormComponent's getConvertedInput() method which returns the input value already converted to the type specified for the component (Double in our case). Once we have the user input we convert it to kelvin degrees and we use the resulting value to set the converted input for our custom component (using method setConvertedInput(T convertedInput)).
 

@@ -4,7 +4,8 @@ Class @ResourceReference@ allows to specify the resources it depends on overridi
 
 For example we can use this method to ensure that a custom reference to JQueryUI library will find JQuery already loaded in the page: 
 
-{code}
+[source, java]
+----
 Url jqueyuiUrl = Url.parse("https://ajax.googleapis.com/ajax/libs/jqueryui/" + 
                                                                  "1.10.2/jquery-ui.min.js");
 		
@@ -18,7 +19,7 @@ UrlResourceReference jqueryuiRef = new UrlResourceReference(jqueyuiUrl){
 		return Arrays.asList(JavaScriptHeaderItem.forReference(jqueryRef));
 	}
 };
-{code}
+----
 
 Please note that in the code above we have built a resource reference using a URL to the desired library instead of a package resource holding the physical file.
 

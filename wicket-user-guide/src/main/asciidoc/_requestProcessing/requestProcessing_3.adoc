@@ -12,11 +12,12 @@ The implementation of the get method takes advantage of the standard class @java
 
 Class @org.apache.wicket.Component@ provides the @getRequestCycle()@ method which is a convenience method that internally invokes @RequestCycle.get()@:
 
-{code}
+[source, java]
+----
 public final RequestCycle getRequestCycle() {
 	return RequestCycle.get();
 }
-{code}
+----
 
 h3. RequestCycle and request processing
 
@@ -48,11 +49,12 @@ h3. Method setResponsePage
 
 The @RequestCycle@ class contains the implementation of the @setResponsePage@ method we use to redirect a user to a specific page (see paragraph 2.4). The namesake method of class @org.apache.wicket.Component@ is just a convenience method that internally invokes the actual implementation on current request cycle:
 
-{code}
+[source, java]
+----
 public final void setResponsePage(final Page page) {
 	getRequestCycle().setResponsePage(page);
 }
-{code}
+----
 
 h3. RequestCycle's hook methods and listeners
 
@@ -76,7 +78,8 @@ A more flexible way to interact with the request processing is to use the listen
 
 To use the request cycle listeners we must add them to our application which in turn will pass them to the new @RequestCycle@'s instances created with @createRequestCycle@ method:
 
-{code}
+[source, java]
+----
 @Override
 public void init() {
 
@@ -86,7 +89,7 @@ public void init() {
 	//listener initialization...
 	getRequestCycleListeners().add(myListener)		
 }
-{code}
+----
 
 The @getRequestCycleListeners@ method returns an instance of class @org.apache.wicket.request.cycle.RequestCycleListenerCollection@. This class is a sort of typed collection for @IRequestCycleListener@ and it also implements the "Composite pattern":http://en.wikipedia.org/wiki/Composite_pattern .
 

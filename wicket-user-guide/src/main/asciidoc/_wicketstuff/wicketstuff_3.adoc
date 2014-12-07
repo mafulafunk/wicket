@@ -4,17 +4,19 @@ Module wicketstuff-gmap3 integrates "Google Maps":http://maps.google.com service
 
 *HTML:*
 
-{code:html}
+[source, html]
+----
 ...
 <body>
   <div wicket:id="map">Map</div>
 </body>
 ... 
-{code}
+----
 
 *Java code:*
 
-{code}
+[source, java]
+----
 public class SimplePage extends WicketExamplePage
 {
     public SimplePage()
@@ -27,6 +29,6 @@ public class SimplePage extends WicketExamplePage
         add(map);
     }
 }
-{code}
+----
 
 The component defines a number of setters to customize its behavior and appearance. More info can be found on wiki page "https://github.com/wicketstuff/core/wiki/Gmap3":https://github.com/wicketstuff/core/wiki/Gmap3 .

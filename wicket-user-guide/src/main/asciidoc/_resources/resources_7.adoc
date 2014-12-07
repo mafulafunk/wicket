@@ -1,6 +1,7 @@
 Some web developers prefer to put their <script> tags at the end of page body instead of inside the <head> tags:
 
-{code:html}
+[source, html]
+----
 
 <html>
 
@@ -16,7 +17,8 @@ Some web developers prefer to put their <script> tags at the end of page body in
 </body>
 </html>
 
-{code}
+[source, java]
+----
 
 
 In Wicket we can achieve this result providing a custom @IHeaderResponseDecorator@ to a our application and using Wicket tag <wicket:container/> to indicate where we want to render our scripts inside the page. Interface @IHeaderResponseDecorator@ defines method @IHeaderResponse decorate(IHeaderResponse response)@ which allows to decorate or add funtionalities to Wicket @IHeaderResponse@. Our custom @IHeaderResponseDecorator@ can be registered in the application with method @setHeaderResponseDecorator@. Anytime Wicket creates an instance of @IHeaderResponse@, it will call the registered @IHeaderResponseDecorator@ to decorate the header response.
@@ -25,7 +27,8 @@ In the example project @ScriptInsideBody@ we can find a custom @IHeaderResponseD
 Wicket already comes with class @JavaScriptFilteredIntoFooterHeaderResponse@ which wraps a @IHeaderResponse@ and renders in a given container all the instances of @JavaScriptHeaderItem@.
 The following code is taken from the Application class of the project:
 
-{code}
+[source, java]
+----
 
     //...
     @Override
@@ -53,17 +56,19 @@ The following code is taken from the Application class of the project:
         }
 
     }
-{code}
+----
 
 As you can see in the code above the "bucket" that will contain JavaScript tags is called @"footer-container"@. To make a use of it the developer have to add a special component called @HeaderResponseContainer@ in his page:
 
-{code}
+[source, java]
+----
 add(new HeaderResponseContainer("someId", "filterName"));
-{code}
+----
 
 Please note that @HeaderResponseContainer@'s needs also a name for the corresponding header response's filter. The markup of our page will look like this:
 
-{code:html}
+[source, html]
+----
 
 <html>
 
@@ -77,11 +82,13 @@ Please note that @HeaderResponseContainer@'s needs also a name for the correspon
 </body>
 </html>
 
-{code}
+[source, java]
+----
 
 The code of the home page is the following:
 
-{code}
+[source, java]
+----
    public HomePage(final PageParameters parameters) {
         super(parameters);
 
@@ -95,7 +102,7 @@ The code of the home page is the following:
 
         response.render(OnEventHeaderItem.forScript("'logo'", "click", "alert('Clicked me!')"));
     }
-{code}
+----
 
 Looking at the code above you can note that our page adds two script to the header section: the first is an instance of @JavaScriptHeaderItem@ and will be rendered in the @HeaderResponseContainer@ while the second will follow the usual behavior and will be rendered inside <head> tag.
 

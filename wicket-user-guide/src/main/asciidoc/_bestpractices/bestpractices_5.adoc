@@ -4,12 +4,13 @@ Visibility of components is an important topic. In Wicket you control any compon
 
 *Listing 6:*
 
-{code}
+[source, java]
+----
 // Poor implementation
 LoginBoxPanel loginBox = new LoginBoxPanel("login");
 loginBox.setVisible(MySession.get().isNotLoggedIn());
 add(loginBox);
-{code}
+----
 
 Listing 6 shows a poor implementation, because a decision about the visibility is made while instanciating the component. Again, in Wicket instances of components exist for several requests. To reuse the same instance you have to call @loginBox.setVisible(false)@. This is very unhandy, because we always have to call @setVisible()@ and manage the visibility. Furthermore you are going to duplicate the states, because visible is equal to "not logged in". So we have two saved states, one for the business aspect "not logged in" and one for the technical aspect "visible". Both is always equal. This approach is error-prone and fragile, because we always have to pay attention to setting the correct information every time. But this is often forgotten because the logic is widely spread over the code. The solution is the Hollywood principle: "Don't call us, we'll call you.". Take a look at the following diagram illustrating an application flow with some calls. We avoid three calls through the "Hollywood-Principle":http://en.wikipedia.org/wiki/Hollywood_Principle and we just have to instanciate the @LoginBoxPanel@.
 
@@ -17,7 +18,8 @@ image::login_calls_hollywood.png[title="fooBar"]
 
 *Listing 7:*
 
-{code}
+[source, java]
+----
 public class LoginBoxPanel {
     // constructor etc.
     @Override
@@ -25,7 +27,7 @@ public class LoginBoxPanel {
         return MySession.get().isNotLoggedIn();
     }
 };
-{code}
+----
 
 Now the control over visibility has been inverted, the @LoginBoxPanel@ decides on its visibility autonomously. For each call of @isVisible()@ there is a refreshed interpretion of the login state. Hence, there is no additional state that might be outdated. The logic is centralized in one line code and not spread throughout the application. Furthermore, you can easily identify that the technical aspect @isVisible()@ correlates to the business aspect "logged in". The same rules can be applied to the method @isEnabled()@. If @isEnabled()@ returns false the components get displayed in gray. Forms which are within an inactive or invisible component do not get executed.
 
@@ -33,7 +35,8 @@ Note that there are cases in which you cannot avoid to call the methods @setVis
 
 *Listing 8:*
 
-{code}
+[source, java]
+----
 new Label("headline", headlineModel) {
     @Override
     public boolean isVisible() {
@@ -42,6 +45,6 @@ new Label("headline", headlineModel) {
         return headline.startWith("Berlusconi");
     }
 }
-{code}
+----
 
 *Note:* Some people insist on overriding @isVisible()@ being [a bad thing|http://www.mail-archive.com/dev\@wicket.apache.org/msg07123.html]. The method @isVisible()@ gets called very often (more than once for each request!), so you have to ensure that the calls within @isVisible()@ are cheap. The main point is that the visibility of a component should be controlled by its own and not be controlled by other components. This avoids a wide-spread logic over the whole application. Another way you can realize this is to override @onConfigure()@ and set the visibility there. This method gets called once during each request.

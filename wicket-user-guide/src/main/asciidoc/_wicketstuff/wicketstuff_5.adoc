@@ -14,15 +14,17 @@ The following snippet illustrate how to use DataGrid and is taken from wiki page
 
 *HTML:*
 
-{code:html}
+[source, html]
+----
 ...
   <div wicket:id="grid">Grid</div>
 ... 
-{code}
+----
 
 *Java code:*
 
-{code}
+[source, java]
+----
 final List<Person> personList = //load a list of Persons
 final ListDataProvider listDataProvider = new ListDataProvider(personList);
 //define grid's columns
@@ -32,7 +34,7 @@ List<IGridColumn> cols = (List) Arrays.asList(
 
 DataGrid grid = new DefaultDataGrid("grid", new DataProviderAdapter(listDataProvider), cols);
 add(grid);
-{code}
+----
 
 In the code above we have used convenience class DefaultDataGrid that is a subclass of DataGrid and it already comes with a navigation toolbar.
 

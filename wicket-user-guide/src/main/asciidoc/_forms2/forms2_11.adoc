@@ -6,7 +6,8 @@ image::choice-form-screenshot.png[title="fooBar"]
 
 A check box can be used as single component to set a boolean property. For this purpose Wicket provides the @org.apache.wicket.markup.html.form.CheckBox@ component which must be attached to <input type="checkbox".../> tag. In the next example (project SingleCheckBox) we will consider a form similar to the one used in paragraph 9.5 to edit a Person object, but with an additional checkbox to let the user decide if she wants to subscribe to our mailing list or not. The form uses the following bean as backing object:
 
-{code}
+[source, java]
+----
 public class RegistrationInfo implements Serializable {
 	
 	private String name;
@@ -17,13 +18,14 @@ public class RegistrationInfo implements Serializable {
 	
 	/*Getters and setters*/
 }
-{code}
+----
 
 The markup and the code for this example are the following:
 
 *HTML:*
 
-{code:html}
+[source, html]
+----
 <form wicket:id="form">		
 		<div style="display: table;">
 			<div style="display: table-row;">
@@ -59,11 +61,12 @@ The markup and the code for this example are the following:
 		</div>	
 	<input type="submit" value="Save"/>
 </form>
-{code}
+----
 
 *Java code:*
 
-{code}
+[source, java]
+----
 public HomePage(final PageParameters parameters) {
     	RegistrationInfo registrtionInfo = new RegistrationInfo();
     	registrtionInfo.setSubscribeList(true);
@@ -79,7 +82,7 @@ public HomePage(final PageParameters parameters) {
 		
 	add(form);
 }
-{code}
+----
 
 Please note that the checkbox will be initially selected because we have set to true the subscribe flag during the model object creation (with instruction registrtionInfo.setSubscribeList(true)):
 
@@ -91,19 +94,21 @@ When we need to display a given number of options with checkboxes, we can use th
 
 *HTML:*
 
-{code:html}
+[source, html]
+----
 <div wicket:id="checkGroup">
 		<input type="checkbox"/>It will be replaced by the actual checkboxes...
 </div>
-{code}
+----
 
 *Java code:*
 
-{code}
+[source, java]
+----
 List<String> fruits = Arrays.asList("apple", "strawberry", "watermelon"); 
 form.add(new CheckBoxMultipleChoice("checkGroup", new ListModel<String>(new  
 								 ArrayList<String>()), fruits));
-{code}
+----
 
 *Screenshot:*
 
@@ -117,15 +122,17 @@ When our options are more complex objects than simple strings, we can render the
 
 *HTML:*
 
-{code:html}
+[source, html]
+----
 <div wicket:id="checkGroup">
 		<input type="checkbox"/>It will be replaced by actual checkboxes...
 </div>
-{code}
+----
 
 *Java code:*
 
-{code}
+[source, java]
+----
 Person john = new Person("John", "Smith");
 Person bob = new Person("Bob", "Smith");
 Person jill = new Person("Jill", "Smith");
@@ -133,7 +140,7 @@ List<Person> theSmiths = Arrays.asList(john, bob, jill);
 ChoiceRenderer render = new ChoiceRenderer("name");
      	form.add(new CheckBoxMultipleChoice("checkGroup", new ListModel<String>(new ArrayList<String>()),   
                                     theSmiths, render));
-{code}
+----
 
 *Screenshot:*
 
@@ -147,7 +154,8 @@ image::select-all-checkbox.png[title="fooBar"]
 
 Wicket comes with a couple of utility components that make it easy to implement such a feature. They are CheckboxMultipleChoiceSelector and CheckBoxSelector classes, both inside package @org.apache.wicket.markup.html.form@. The difference between these two components is that the first works with an instance of CheckBoxMultipleChoice while the second takes in input a list of CheckBox objects:
 
-{code}
+[source, java]
+----
 /* CheckboxMultipleChoiceSelector usage: */
 
 CheckBoxMultipleChoice checkGroup;
@@ -159,7 +167,7 @@ CheckboxMultipleChoiceSelector cbmcs = new CheckboxMultipleChoiceSelector("id", 
 CheckBox checkBox1, checkBox2, checkBox3;
 //checks initialization...
 CheckBoxSelector cbmcs = new CheckBoxSelector("id", checkBox1, checkBox2, checkBox3);
-{code}
+----
 
 h3. Working with grouped radio buttons
 
@@ -167,18 +175,20 @@ For groups of radio buttons we can use the @org.apache.wicket.markup.html.form.R
 
 *HTML:*
 
-{code:html}
+[source, html]
+----
 <div wicket:id="radioGroup">
 	<input type="radio"/>It will be replaced by actual radio buttons...
 </div>
-{code}
+----
 
 *Java code:*
 
-{code}
+[source, java]
+----
 List<String> fruits = Arrays.asList("apple", "strawberry", "watermelon"); 
 form.add(new RadioChoice("radioGroup", Model.of(""), fruits));
-{code}
+----
 
 *Screenshot:*
 

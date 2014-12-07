@@ -2,30 +2,33 @@ Wicket uses a number of custom exceptions during the regular running of an appli
 All the other exceptions raised during rendering phase are handled by an implementation of @org.apache.wicket.request.IExceptionMapper@ which by default is class @org.apache.wicket.DefaultExceptionMapper@. If we are working in DEVELOPMENT mode this mapper will redirect us to a page that shows the exception stacktrace (page @ExceptionErrorPage@). On the contrary, if application is running in DEPLOYMENT mode @DefaultExceptionMapper@ will display an internal error page which by default is @org.apache.wicket.markup.html.pages.InternalErrorPage@.
 To use a custom internal error page we can change application settings like this:
 
-{code}
+[source, java]
+----
 getApplicationSettings().setInternalErrorPage(MyInternalErrorPage.class);
-{code}
+----
 
 We can also manually set if Wicket should display the exception with @ExceptionErrorPage@ or if we want to use the internal error page or if we don't want to display anything at all when an unexpected exception is thrown:
 
-{code}
+[source, java]
+----
 //show default developer page
 getExceptionSettings().setUnexpectedExceptionDisplay(IExceptionSettings.SHOW_EXCEPTION_PAGE);
 //show internal error page
 getExceptionSettings().setUnexpectedExceptionDisplay(IExceptionSettings.SHOW_INTERNAL_ERROR_PAGE);
 //show no exception page when an unexpected exception is thrown
 getExceptionSettings().setUnexpectedExceptionDisplay(IExceptionSettings.SHOW_NO_EXCEPTION_PAGE);
-{code}
+----
 
 Developers can also decide to use a custom exception mapper instead of @DefaultExceptionMapper@. To do this we must override @Application@'s method @getExceptionMapperProvider@:
 
-{code}
+[source, java]
+----
 @Override
 public IProvider<IExceptionMapper> getExceptionMapperProvider()
 {
     //...
 }
-{code}
+----
 
 The method returns an instance of @org.apache.wicket.util.IProvider@ that should return our custom exception mapper.
 

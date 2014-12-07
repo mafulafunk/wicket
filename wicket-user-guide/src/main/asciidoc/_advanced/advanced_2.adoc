@@ -2,7 +2,8 @@
 
 With Wicket it's quite easy to build a callback URL that executes a specific method on server side. This method must be defined in a functional interface (i.e. an an interface that defines just one method) that inherits from built-in @org.apache.wicket.IRequestListener@ and it must be a void method with no parameters in input:
 
-{code}
+[source, java]
+----
 public interface IMyListener extends IRequestListener
 {
 	/**
@@ -10,11 +11,12 @@ public interface IMyListener extends IRequestListener
 	 */
 	void myCallbackMethod();
 }
-{code}
+----
 
 To control how the method will be invoked we must use class @org.apache.wicket.RequestListenerInterface@. In Wicket is a common practice to instantiate this class as a public static field inside the relative callback interface:
 
-{code}
+[source, java]
+----
 public interface IMyListener extends IRequestListener
 {
 	/**RequestListenerInterface instance*/
@@ -25,7 +27,7 @@ public interface IMyListener extends IRequestListener
 	 */
 	void myCallbackMethod();
 }
-{code}
+----
 
 By default @RequestListenerInterface@ will respond rendering the current page after the callback method has been executed (if we have a non-AJAX request). To change this behavior we can use setter method @setRenderPageAfterInvocation(boolean)@.
 
@@ -35,7 +37,8 @@ Project CallbackURLExample contains a behavior (class @OnChangeSingleChoiceBehav
 
 Instead of a custom callback interface, @OnChangeSingleChoiceBehavior@ implements built-in interface @org.apache.wicket.behavior.IBehaviorListener@ which is designed to generate a callback URL for behaviors. The callback method defined in this interface is @onRequest()@ and the following is the implementation provided by @OnSelectionChangedNotifications@:
 
-{code}
+[source, java]
+----
 @Override
 public void onRequest() {	
 	Request request = RequestCycle.get().getRequest();
@@ -44,13 +47,14 @@ public void onRequest() {
 	//boundComponent is the component that the behavior it is bound to.
 	boundComponent.setDefaultModelObject( convertChoiceIdToChoice(choiceId.toString()));
 }
-{code}
+----
 
 When invoked via URL, the behavior expects to find a request parameter (choiceId) containing the id of the selected choice. This value is used to obtain the corresponding choice object that must be used to set the model of the component that the behavior is bound to (boundComponent). Method @convertChoiceIdToChoice@ is in charge of retrieving the choice object given its id and it has been copied from class @AbstractSingleSelectChoice@.
 
 Another interesting part of @OnChangeSingleChoiceBehavior@ is its method @onComponentTag@ where some JavaScript “magic” is used to move user's browser to the callback URL when event “change” occurs on bound component:
 
-{code}
+[source, java]
+----
 @Override
 public void onComponentTag(Component component, ComponentTag tag) {
 	super.onComponentTag(component, tag);
@@ -69,13 +73,14 @@ public void onComponentTag(Component component, ComponentTag tag) {
 		
 	tag.put("onchange", finalScript);
 }
-{code}
+----
 
 The goal of @onComponentTag@ is to build an onchange handler that forces user's browser to move to the callback URL (modifing standard property window.location.href). Please note that we have appended the expected parameter (choiceId) to the URL retrieving its value with a JQuery selector suited for the current type of component (a drop-down menu or a radio group). Since we are using JQuery in our JavaScript code, the behavior comes also with method @renderHead@ that adds the bundled JQuery library to the current page.
 
 Method @getCallbackUrl()@ is used to generate the callback URL for our custom behavior and it has been copied from built-in class @AbstractAjaxBehavior@: 
 
-{code}
+[source, java]
+----
 public CharSequence getCallbackUrl(){
 	if (boundComponent == null){
 		throw new IllegalArgumentException(
@@ -88,7 +93,7 @@ public CharSequence getCallbackUrl(){
 
 	return boundComponent.urlFor(this, rli, new PageParameters());
 }
-{code}
+----
 
 Static field @IBehaviorListener.INTERFACE@ is the implementation of @RequestListenerInterface@ defined inside callback interface @IBehaviorListener@.
 
@@ -125,7 +130,8 @@ Each broadcast mode has its own traversal order for @Session@, @RequestCycle@ an
 
 Interface @IEventSink@ exposes callback method @onEvent(IEvent<?> event)@ which is triggered when a sink receives an event. The interface @IEvent@ represents the received event and provides getter methods to retrieve the event broadcast type, the source of the event and its payload. Typically the received event is used checking the type of its payload object:
 
-{code}
+[source, java]
+----
 @Override
 public void onEvent(IEvent event) {
   //if the type of payload is MyPayloadClass perform some actions 
@@ -135,7 +141,7 @@ public void onEvent(IEvent event) {
      //other business code
   }   		
 }
-{code}
+----
 
 Project @InterComponetsEventsExample@ provides a concrete example of sending an event to a component (named 'container in the middle') using all the available broadcast methods:
 

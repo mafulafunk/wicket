@@ -17,7 +17,8 @@ To identify a package resource we need to specify a class inside the target pack
 In the following example taken from project ImageAsPackageRes, CustomPanel loads a picture file available as package resource and it displays it in a <img> tag using the built-in component @org.apache.wicket.markup.html.image.Image@: 
 
 *HTML:*
-{code:html}
+[source, html]
+----
 <html>
 <head>...</head>
 <body>
@@ -26,10 +27,11 @@ In the following example taken from project ImageAsPackageRes, CustomPanel loads
 </wicket:panel>
 </body>
 </html>
-{code}
+----
 
 *Jave Code:*
-{code}
+[source, java]
+----
 public class CustomPanel extends Panel {
 
 	public CustomPanel(String id) {
@@ -39,7 +41,7 @@ public class CustomPanel extends Panel {
 		add(new Image("packageResPicture", resourceReference));
 	}
 }
-{code}
+----
 
 Wicket will take care of generating a valid URL for file calendar.jpg. URLs for package resources have the following structure:
 
@@ -70,10 +72,11 @@ h3. Using package resources with tag <wicket:link>
 
 In paragraph 8.3 we have used tag <wicket:link> to automatically create links to bookmarkable pages. The same technique can be used also for package resources in order to use them directly from markup file. Let's assume for example that we have a picture file called icon.png placed in the same package of the current page. Under these conditions we can display the picture file using the following markup fragment:
 
-{code:html}
+[source, html]
+----
 <wicket:link>
    <img src="icon.png"/>
 </wicket:link>
-{code}
+----
 
 In the example above Wicket will populate the attribute src with the URL corresponding to the package resource icon.png. <wicket:link> supports also tag <link> for CSS files and tag <script> for JavaScript files.

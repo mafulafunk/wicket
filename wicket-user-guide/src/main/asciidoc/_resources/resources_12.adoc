@@ -2,7 +2,8 @@
 
 Wicket loads application's resources delegating this task to a resource locator represented by interface @org.apache.wicket.core.util.resource.locator.IResourceStreamLocator@. To retrieve or modify the current resource locator we can use the getter and setter methods defined by setting interface @IResourceSettings@:
 
-{code}
+[source, java]
+----
   //init application's method
   @Override
   public void init(){   
@@ -11,7 +12,7 @@ Wicket loads application's resources delegating this task to a resource locator 
     //set the resource locator    
     getResourceSettings().setResourceStreamLocator(myLocator);
   }
-{code}
+----
 
 The default locator used by Wicket is class @ResourceStreamLocator@ which in turn tries to load a requested resource using a set of implementations of interface @IResourceFinder@. This interface defines method @find(Class class, String pathname)@ which tries to resolve a resource corresponding to the given class and path.
 
@@ -25,14 +26,15 @@ image::package-structure-custom-folder.png[title="fooBar"]
 
 As we can see in the picture above, we must preserve the package structure also in the custom folder used as resource container. The code used inside application class to configure  WebApplicationPath is the following:
 
-{code}
+[source, java]
+----
 @Override
 public void init()
 {
 	getResourceSettings().getResourceFinders().add(
 			new WebApplicationPath(getServletContext(), "markupFolder"));
 }
-{code}
+----
 
 Method getResourceFinders() defined by setting interface IResourceSettings returns the list of  resource finders defined in our application. The constructor of WebApplicationPath takes in input also an instance of standard interface javax.servlet.ServletContext which can be retrieved with WebApplication's method getServletContext().
 

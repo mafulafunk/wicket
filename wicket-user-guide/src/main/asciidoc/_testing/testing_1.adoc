@@ -6,7 +6,8 @@ image::mvn-wicket-archetype.png[title="fooBar"]
 
 Here is the content of TestHomePage:
 
-{code}
+[source, java]
+----
 public class TestHomePage{
 	private WicketTester tester;
 
@@ -22,7 +23,7 @@ public class TestHomePage{
 		tester.assertRenderedPage(HomePage.class);
 	}
 }
-{code}
+----
 
 The central class in a Wicket testing is @org.apache.wicket.util.tester.WicketTester@. This utility class provides a set of methods to render a component, click links, check if page contains a given component or a feedback message, and so on.
 
@@ -38,7 +39,8 @@ A click on a Wicket link can be simulated with method @clickLink@ which takes in
 
 To see an example of usage of clickLink, let's consider again project @LifeCycleStagesRevisited@. As we know from chapter 5 the home page of the project alternately displays two different labels (“First label” and “Second label”), swapping between them each time button "reload" is clicked. The code from its test case checks that label has actually changed after button "reload" has been pressed:
 
-{code}
+[source, java]
+----
 //...
 @Test
 public void switchLabelTest(){
@@ -54,18 +56,19 @@ public void switchLabelTest(){
 	tester.assertLabel("label", "Second label");	
 }
 //...
-{code}
+----
 
 In the code above we have used @clickLink@ to click on the "reload" button and force page to be rendered again. In addition, we have used also method @assertLabel@ that checks if a given label contains the expected text.
 
 By default @clickLink@ assumes that AJAX is enabled on client side. To switch AJAX off we can use another version of this method that takes in input the path to the link component and a boolean flag that indicates if AJAX must be enabled (true) or not (false). 
 
-{code}
+[source, java]
+----
 //...
 //simulate a click on a button without AJAX support
 tester.clickLink("reload", false);
 //...
-{code}
+----
 
 h3. Testing component status
 
@@ -77,7 +80,8 @@ WicketTester provides also a set of methods to test the states of a component. T
 
 In the test case from project @CustomDatepickerAjax@ we used @assertEnabled@/@assertDisabled@ to check if button "update" really disables our datepicker:  
 
-{code}
+[source, java]
+----
 //...
 @Test
 public void testDisableDatePickerWithButton(){
@@ -91,13 +95,14 @@ public void testDisableDatePickerWithButton(){
 	tester.assertDisabled("form:datepicker");		
 }
 //...
-{code}
+----
 
 h3. Testing components in isolation
 
 Method @startComponent(Component)@ can be used to test a component in isolation without having to create a container page for this purpose. The target component is rendered and both its methods @onInitialize()@ and @onBeforeRender()@ are executed. In the test case from project @CustomFormComponentPanel@ we used this method to check if our custom form component correctly renders its internal label:
 
-{code}
+[source, java]
+----
 //...
 @Test
 public void testCustomPanelContainsLabel(){
@@ -108,7 +113,7 @@ public void testCustomPanelContainsLabel(){
 	Assert.assertNotNull(field.get("mesuramentUnit"));
 }
 //...
-{code}
+----
 
 If test requires a page we can use @startComponentInPage(Component)@ which automatically generates a page for our component.
 
@@ -118,7 +123,8 @@ h3. Testing the response
 
 In the test case from project @CustomResourceMounting@ we extract the text contained in the last response with method @getDocument@ and we check if it is equal to the RSS feed used for the test: 
 
-{code}
+[source, java]
+----
 //...
 @Test
 public void testMountedResourceResponse() throws IOException, FeedException{tester.startResource(new RSSProducerResource());
@@ -133,7 +139,7 @@ public void testMountedResourceResponse() throws IOException, FeedException{test
 	Assert.assertEquals(responseTxt, outputStream.toString());
 }
 //...
-{code}
+----
 
 To simulate a request to the custom resource we used method @startResource@ which can be used also with resource references.
 
@@ -141,34 +147,37 @@ h3. Testing URLs
 
 @WicketTester@ can be pointed to an arbitrary URL with method @executeUrl(String url)@. This can be useful to test mounted pages, resources or request mappers:
 
-{code}
+[source, java]
+----
 //...
 //the resource was mapped at '/foo/bar'
 tester.executeUrl("./foo/bar");	
 //...
-{code}
+----
 
 h3. Testing AJAX components
 
 If our application uses AJAX to refresh components markup, we can test if @AjaxRequestTarget@ contains a given component with @WicketTester@'s method @assertComponentOnAjaxResponse@:
 
-{code}
+[source, java]
+----
 //...
 //test if AjaxRequestTarget contains a component (using its instance)
 tester.assertComponentOnAjaxResponse(amountLabel);	
 //...
 //test if AjaxRequestTarget contains a component (using its path)
 tester.assertComponentOnAjaxResponse("pathToLabel:labelId");
-{code}
+----
 
 It's also possible to use method @isComponentOnAjaxResponse(Component cmp)@ to know if a component has been added to @AjaxRequestTarget@:
 
-{code}
+[source, java]
+----
 //...
 //test if AjaxRequestTarget does NOT contain amountLabel 
 assertFalse(tester.isComponentOnAjaxResponse(amountLabel));	
 //...
-{code}
+----
 
 h3. Testing AJAX events
 
@@ -176,7 +185,8 @@ Behavior @AjaxEventBehavior@ and its subclasses can be tested simulating AJAX ev
 
 *Home page code:*
 
-{code}
+[source, java]
+----
 public class HomePage extends WebPage {
  public static String INIT_VALUE = "Initial value";
  public static String OTHER_VALUE = "Other value";
@@ -198,11 +208,12 @@ public class HomePage extends WebPage {
 	//...
  }
 }
-{code}
+----
 
 *Test method:*
 
-{code}
+[source, java]
+----
 @Test
 public void testAjaxBehavior(){
 	//start and render the test page
@@ -214,13 +225,14 @@ public void testAjaxBehavior(){
 	//test if label has changed as expected
 	tester.assertLabel("label", HomePage.OTHER_VALUE);
 }
-{code}
+----
 
 h3. Testing AJAX behaviors
 
 To test a generic AJAX behavior we can simulate a request to it using @WicketTester@'s method @executeBehavior(AbstractAjaxBehavior behavior)@:
 
-{code}
+[source, java]
+----
 //...
 AjaxFormComponentUpdatingBehavior ajaxBehavior = 
 		new AjaxFormComponentUpdatingBehavior("change"){
@@ -234,7 +246,7 @@ component.add(ajaxBehavior);
 //execute AJAX behavior, i.e. onUpdate will be invoked 
 tester.executeBehavior(ajaxBehavior));	
 //...
-{code}
+----
 
 h3. Using a custom servlet context
 
@@ -244,7 +256,8 @@ In order to write testing code for applications that use this kind of customizat
 
 Webapp root folder can be passed to @WicketTester@'s constructor as further parameter like we did in the test case of project @CustomFolder4MarkupExample@:
 
-{code}
+[source, java]
+----
 public class TestHomePage{
    private WicketTester tester;
 
@@ -258,16 +271,17 @@ public class TestHomePage{
    }
    //test methods...
 }
-{code}
+----
 
 {note}
 After a test method has been executed, we may need to clear any possible side effect occurred to the @Application@ and @Session@ objects. This can be done invoking @WicketTester@'s method @destroy()@:
 
-{code}
+[source, java]
+----
 @After
 public void tearDown(){
 	//clear any side effect occurred during test.
 	tester.destroy();
 }
-{code}
+----
 {note}

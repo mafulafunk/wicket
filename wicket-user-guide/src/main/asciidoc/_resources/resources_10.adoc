@@ -2,7 +2,8 @@
 
 Just like pages also resources can be mounted to a specific path. Class @WebApplication@ provides method @mountResource@ which is almost identical to @mountPage@ seen in paragraph 8.6.1:
 
-{code}
+[source, java]
+----
 @Override
 public void init() {
   super.init();
@@ -15,13 +16,14 @@ public void init() {
   }};
   mountResource("/foo/bar", resourceReference);
 }
-{code}
+----
 
 With the configuration above (taken from project @CustomResourceMounting@) every request to /foo/bar will be served by the custom resource built in the previous paragraph. 
 
 Parameter placeholders are supported as well:
 
-{code}
+[source, java]
+----
 @Override
 public void init() {
   super.init();
@@ -34,4 +36,4 @@ public void init() {
   }};
   mountResource("/bar/${baz}", resourceReference);
 }
-{code}
+----

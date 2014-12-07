@@ -4,7 +4,8 @@ Components that inherit from @AbstractChoice@ (such as @DropDownChoice@, @CheckB
 
 Java code:
 
-{code}
+[source, java]
+----
 public HomePage(final PageParameters parameters) {
 	super(parameters);
 
@@ -32,36 +33,39 @@ public HomePage(final PageParameters parameters) {
 	form.add(selectColor);
 	add(form.add(changeLocale));
     }
-{code}
+----
 
 Default bundle (English):
 
-{code}
+[source, java]
+----
 selectColor.null=Select a color
 green=Green
 red=Red
 blue=Blue
 yellow=Yellow
-{code}
+----
 
 German bundle:
 
-{code}
+[source, java]
+----
 selectColor.null=Wahlen sie eine farbe
 green=Grun
 red=Rot
 blue=Blau
 yellow=Gelb
-{code}
+----
 
 Italian bundle:
 
-{code}
+[source, java]
+----
 selectColor.null=Scegli un colore
 green=Verde
 red=Rosso
 blue=Blu
 yellow=Giallo
-{code}
+----
 
 Along with the localized versions of colors names, in the bundles above we can also find a custom value for the placeholder text (“Chose one ”) used for null value. The resource key for this resource is 'null' or '<component id>.null' if we want to make it component-specific.

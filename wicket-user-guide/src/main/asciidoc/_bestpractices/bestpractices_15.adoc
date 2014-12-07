@@ -4,7 +4,8 @@ Avoid monolithic classes. Often I have seen that developers put the whole stuff 
 
 *Listing 17:*
 
-{code}
+[source, java]
+----
 public class BlogEditPage extends WebPage {
     private IModel<Blog> blogModel;
 
@@ -27,4 +28,4 @@ public class BlogEditPage extends WebPage {
 
     // more methods here
 }
-{code}
+----

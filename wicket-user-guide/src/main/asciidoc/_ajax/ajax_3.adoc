@@ -9,15 +9,17 @@ AjaxEventBehavior allows to handle a JavaScript event (like click, change, etc..
 In project @AjaxEventBehaviorExample@ we used this behavior to build a “clickable” Label component that counts the number of clicks. Here is the code from the home page of the project:
 
 *HTML:*
-{code:html}
+[source, html]
+----
 <body>
   <div wicket:id="clickCounterLabel"></div>
   User has clicked <span wicket:id="clickCounter"></span> time/s on the label above.
 </body>
-{code}
+----
 
 *Java Code:*
-{code}
+[source, java]
+----
 public class HomePage extends WebPage {
    public HomePage(final PageParameters parameters) {
       super(parameters);
@@ -58,7 +60,7 @@ class ClickCounterLabel extends Label{
       super(id, label);      
    }
 }
-{code}
+----
 
 In the code above we have declared a custom label class named @ClickCounterLabel@ that exposes a public integer field called clickCounter. Then, in the home page we have attached a @AjaxEventBehavior@ to our custom label to increment clickCounter every time it receives a click event.
 
@@ -68,14 +70,15 @@ h3. AjaxFormSubmitBehavior
 
 This behavior allows to send a form via AJAX when the component it is attached to receives the specified event. The component doesn't need to be inside the form if we use the constructor version that, in addition to the name of the event, takes in input also the target form:
 
-{code}
+[source, java]
+----
 Form form = new Form("form");		
 Button submitButton = new Button("submitButton");
 //submit form when button is clicked		
 submitButton.add(new AjaxFormSubmitBehavior(form, "click"){});
 add(form);
 add(submitButton);
-{code}
+----
 
 h3. AjaxFormComponentUpdatingBehavior
 
@@ -83,7 +86,8 @@ This behavior updates the model of the form component it is attached to when a g
 
 The behavior doesn't work with radio buttons and checkboxes. For these kinds of components we must use @AjaxFormChoiceComponentUpdatingBehavior@:
 
-{code}
+[source, java]
+----
 Form form = new Form("form");		
 TextField textField = new TextField("textField", Model.of(""));
 //update the model of the text field each time event "change" occurs
@@ -94,13 +98,14 @@ textField.add(new AjaxFormComponentUpdatingBehavior("change"){
 	}
 });
 add(form.add(textField));
-{code}
+----
 
 h3. AbstractAjaxTimerBehavior
 
 @AbstractAjaxTimerBehavior@ executes callback method @onTimer(AjaxRequestTarget target)@ at a specified interval. The behavior can be stopped and restarted at a later time with methods @stop(AjaxRequestTarget target)@ and @restart(AjaxRequestTarget target)@:
 
-{code}
+[source, java]
+----
 Label dynamicLabel = new Label("dynamicLabel");
 //trigger an AJAX request every three seconds		
 dynamicLabel.add(new AbstractAjaxTimerBehavior(Duration.seconds(3)) {			
@@ -110,4 +115,4 @@ dynamicLabel.add(new AbstractAjaxTimerBehavior(Duration.seconds(3)) {
 	}
 });
 add(dynamicLabel);
-{code}
+----

@@ -21,7 +21,8 @@ Here is a partial list of methods defined inside class @Behavior@ along with a b
 
 For example the following behavior prepends a red asterisk to the tag of a form component if this one  is required:
 
-{code}
+[source, java]
+----
 public class RedAsteriskBehavior extends Behavior {
 
   @Override
@@ -36,7 +37,7 @@ public class RedAsteriskBehavior extends Behavior {
       response.write(asteriskHtml);
   }
 }
-{code}
+----
 
 Since method @beforeRender@ is called before the coupled component is rendered, we can use it to prepend custom markup to component tag. This can be done writing our markup directly to the current  Response object, as we did in the example above.
 

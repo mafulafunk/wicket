@@ -11,7 +11,8 @@ The first requirement implies that, rather than creating a page by hand, we shou
 
 In order to comply with the second requirement it could be helpful to check if all children components of a page are stateless. To do this we can leverage method visitChildren and the visitor pattern to iterate over components and test if their method isStateless actually returns true:
 
-{code}
+[source, java]
+----
 @Override
 protected void onInitialize() {
 		super.onInitialize();
@@ -24,18 +25,19 @@ protected void onInitialize() {
 			}
 		});
 	}
-{code}
+----
 
 Alternatively, we could use the @StatelessComponent@ utility annotation along with the @StatelessChecker@ class (they are both in package @org.apache.wicket.devutils.stateless@). @StatelessChecker@ will throw an @IllegalArgumentException@ if a component annotated with @StatelessComponent@ doesn't respect the requirements for being stateless. To use @StatelessComponent@ annotation we must first add the @StatelessChecker@ to our application as a component render listener:
 
-{code}
+[source, java]
+----
 @Override
 public void init()
 {
 	super.init();
 	getComponentPostOnBeforeRenderListeners().add(new StatelessChecker());
 }
-{code}
+----
 
 {note}
 Most of the Wicket's built-in components are stateful, hence they can not be used with a stateless page. However some of them have also a stateless version which can be adopted when we need to keep a page stateless. In the rest of the guide we will point out when a built-in component comes also with a stateless version.

@@ -6,7 +6,8 @@ In the following  example we have defined a fragment in a page and we used it as
 
 *Page markup:*
 
-{code:html}
+[source, html]
+----
 <html>
   ...
 <body>
@@ -17,14 +18,15 @@ In the following  example we have defined a fragment in a page and we used it as
 	</wicket:fragment>
 </body>
 </html>
-{code}
+----
 
 *Java code:*
 
-{code}
+[source, java]
+----
 Fragment fragment = new  Fragment ("contentArea", "fragmentId", this);
 add(fragment);
-{code}
+----
 
 Fragments can be very helpful with complex pages or components. For example let's say that we  have a page where users can register to our forum. This page should first display a form where user must insert his/her personal data (name, username, password, email and so on), then, once the user has submitted the form, the page should display a message like “Your registration is complete! Please check your mail to activate your user profile.”. 
 
@@ -32,7 +34,8 @@ Instead of displaying this message with a new component or in a new page, we can
 
 *Page markup:*
 
-{code:html}
+[source, html]
+----
 <html>
 <body>
 	<div wicket:id="contentArea"></div>
@@ -44,15 +47,16 @@ Instead of displaying this message with a new component or in a new page, we can
 	</wicket:fragment>
 </body>
 </html>
-{code}
+----
 
 *Java code:*
 
-{code}
+[source, java]
+----
 Fragment fragment = new  Fragment ("contentArea", "formFrag", this);
 add(fragment);
 
 //form has been submitted
 Fragment fragment = new  Fragment ("contentArea", "messageFrag", this);
 replace(fragment);
-{code}
+----

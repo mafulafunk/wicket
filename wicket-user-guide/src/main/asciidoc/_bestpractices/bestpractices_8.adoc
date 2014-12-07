@@ -4,11 +4,12 @@ Always try to pass models on to the parent component. By that, you ensure that a
 
 *Listing 11:*
 
-{code}
+[source, java]
+----
 public class RegistrationInputPanel extends Panel{
     public RegistrationInputPanel(String id, IModel<Registration> regModel) {
         super(id, regModel)
         // add components
     }
 }
-{code}
+----

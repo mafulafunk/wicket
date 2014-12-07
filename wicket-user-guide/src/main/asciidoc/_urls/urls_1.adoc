@@ -4,14 +4,15 @@ A common practice in web development is to pass data to a page using query strin
 
 Query string parameters can also be referred to as named parameters. In Wicket they are handled with class @org.apache.wicket.request.mapper.parameter.PageParameters@. Since named parameters are basically name-value pairs, PageParameters works in much the same way as Java Map providing two methods to create/modify a parameter (add(String name, Object value) and set(String name, Object value)),  one method to remove an existing parameter (remove(String name)) and one to retrieve the value of a given parameter (get(String name)) . Here is a snippet to illustrate the usage of PageParameters:
 
-{code}
+[source, java]
+----
 PageParameters pageParameters = new PageParameters(); 
 //add a couple of parameters
 pageParameters.add("name", "John");
 pageParameters.add("age", 28);
 //retrieve the value of 'age' parameter
 pageParameters.get("age");
-{code}
+----
 
 Now that we have seen how to work with page parameters, let's see how to use them with our pages.
 
@@ -23,7 +24,8 @@ In the following example taken from the PageParametersExample project we have a 
 
 Link code:
 
-{code}
+[source, java]
+----
 add(new Link("pageWithIndexParam") {
 
 	@Override
@@ -37,25 +39,27 @@ add(new Link("pageWithIndexParam") {
 	}
 			
 });
-{code}
+----
 
 Target page code:
 
-{code}
+[source, java]
+----
 public class PageWithParameters extends WebPage {
 	//Override superclass constructor
 	public PageWithParameters(PageParameters parameters) {
 		super(parameters);
 	}
  }
-{code}
+----
 
 The code is quite straightforward and it’s more interesting to look at the URL generated for the target page:
 
-{code:html}
+[source, html]
+----
 <app root>/PageParametersExample/wicket/bookmarkable/
 		org.wicketTutorial.PageWithParameters?foo=foo&bar=bar
-{code}
+----
 
 At first glance the URL above could seem a little weird, except for the last part which contains the two named parameters used to build the target page.
 
@@ -67,26 +71,29 @@ h3. Indexed parameters
 
 Besides named parameters, Wicket also supports indexed parameters. These kinds of parameters are rendered as URL segments placed before named parameters. Let's consider for example the following URL:
 
-{code:html}
+[source, html]
+----
 <application path>/foo/bar?1&baz=baz
-{code}
+----
 
 The URL above contains two indexed parameters (foo and bar) and a query string consisting of the page id and a named parameter (baz). Just like named parameters also indexed parameters are handled by the PageParameters class. The methods provided by PageParameters for indexed parameters are set(int index, Object object) (to add/modify a parameter), remove(int index)(to remove a parameter) and get(int index) (to read a parameter).
 
 As their name suggests, indexed parameters are identified by a numeric index and they are rendered following the order in which they have been added to the PageParameters. The following is an example of indexed parameters:
 
-{code}
+[source, java]
+----
 PageParameters pageParameters = new PageParameters(); 
 //add a couple of parameters
 pageParameters.set(0, "foo");
 pageParameters.set(1, "bar");
 //retrieve the value of the second parameter ("bar")
 pageParameters.get(1);
-{code}
+----
 
 Project PageParametersExample comes also with a link to a page with both indexed parameters and a named parameter:
 
-{code}
+[source, java]
+----
 add(new Link("pageWithNamedIndexParam") {
 
 	@Override
@@ -101,6 +108,6 @@ add(new Link("pageWithNamedIndexParam") {
 	}
 			
 });
-{code}
+----
 
 The URL generated for the linked page (PageWithParameters) is the one seen at the beginning of the paragraph.

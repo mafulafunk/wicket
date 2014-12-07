@@ -10,29 +10,32 @@ Another parameter needed to build a @HttpsMapper@ is an instance of class @Https
 
 The following code is taken from project @HttpsProtocolExample@ and illustrates how to enable HTTPS  in our applications:
 
-{code}
+[source, java]
+----
 //Application class code...
 @Override
 public void init(){   
    setRootRequestMapper(new HttpsMapper(getRootRequestMapper(), 
                                        new HttpsConfig(8080, 443))); 
 }
-{code}
+----
 
 Now we can use annotation RequireHttps to specify which pages must be served using HTTPS:
 
-{code}
+[source, java]
+----
 @RequireHttps
 public class HomePage extends WebPage {
     public HomePage(final PageParameters parameters) {
     	super(parameters);	
     }
 }
-{code}
+----
 
 If we want to protect many pages with HTTPS without adding annotation @RequireHttps@ to each of them, we can annotate a marker interface or a base page class and implement/extend it in any page we want to make secure:
 
-{code}
+[source, java]
+----
 // Marker interface:
 @RequireHttps
 public interface IMarker{

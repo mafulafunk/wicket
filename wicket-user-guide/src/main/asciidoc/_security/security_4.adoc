@@ -1,6 +1,7 @@
 In chapter [10.6|guide:urls_6] we have seen how to encrypt URLs using @CryptoMapper@ request mapper. To encrypt/decrypt page URLs @CryptoMapper@ uses an instance of @org.apache.wicket.util.crypt.ICrypt@ interface:
 
-{code}
+[source, java]
+----
 public interface ICrypt
 {
 	String encryptUrlSafe(final String plainText);
@@ -9,7 +10,7 @@ public interface ICrypt
 
 	...
 }
-{code}
+----
 
 The default implementation for this interface is class @org.apache.wicket.util.crypt.SunJceCrypt@. It provides password-based cryptography using @PBEWithMD5AndDES@ algorithm coming with the standard security providers in the Java Runtime Environment.
 
@@ -25,23 +26,25 @@ By using @CryptoMapper(IRequestMapper wrappedMapper, Application application)@ c
 @org.apache.wicket.util.IProvider@ is a single-method interface that acts as object supplier:
 {note}
 
-{code}
+[source, java]
+----
 public interface IProvider<T>
 {
 	T get();
 }
-{code}
+----
 
 * The second option is to register a cipher factory at application level with method @setCryptFactory(ICryptFactory cryptFactory)@ of interface @ISecuritySettings@:
 
-{code}
+[source, java]
+----
 @Override
 public void init() {
 	super.init();
 	getSecuritySettings().setCryptFactory(new SomeCryptFactory());
 	setRootRequestMapper(new CryptoMapper(getRootRequestMapper(), this));
 }
-{code}
+----
 
 
 Since version 6.19.0 Wicket uses @org.apache.wicket.core.util.crypt.KeyInSessionSunJceCryptFactory@ as a default factory for @ICrypt@ objects. This factory generates a unique key for each user that is stored in her HTTP 

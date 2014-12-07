@@ -4,7 +4,8 @@ A component should be self-contained. The user of a component should neither hav
 
 *Listing 1:*
 
-{code}
+[source, java]
+----
 // Poor component
 public class RegistrationForm extends Form<Registration> {
     public RegistrationForm(String id, IModel<Registration> regModel) {
@@ -15,13 +16,14 @@ public class RegistrationForm extends Form<Registration> {
         add(new TextField("lastname"));
     }
 }
-{code}
+----
 
 This snippet is an example for a poor component. The user of the @RegistrationForm@ must know the internal structure of the markup and component in order to use it.
 
 *Listing 2:*
 
-{code}
+[source, java]
+----
 public class RegistrationPage extends Page {
     public RegistrationPage(IModel<Registration> regModel) {
         Form<?> form = new RegistrationForm("form");
@@ -33,9 +35,10 @@ public class RegistrationPage extends Page {
         add(form);
     }
 }
-{code}
+----
 
-{code:html}
+[source, html]
+----
 <html>
 <body>
     <form wicket:id="form">
@@ -48,13 +51,14 @@ public class RegistrationPage extends Page {
     </form>
 </body>
 </html>
-{code}
+----
 
 The code above shows the usage of the poor component in the @RegistrationPage@. You can see that the input fields @firstname@, @lastname@ and @username@ get used, even though these components are not added explicitly to the @RegistrationPage@. Avoid this, because other developers cannot directly see that the components were added in @RegistrationPage@ class.
 
 *Listing 3:*
 
-{code}
+[source, java]
+----
 // Good component
 public class RegistrationInputPanel extends Panel{
     public RegistrationInputPanel(String id, IModel<Registration> regModel) {
@@ -68,9 +72,10 @@ public class RegistrationInputPanel extends Panel{
         add(form);
     }
 }
-{code}
+----
 
-{code:html}
+[source, html]
+----
 <html>
 <body>
     <wicket:panel>
@@ -82,7 +87,7 @@ public class RegistrationInputPanel extends Panel{
     </wicket:panel>
 </body>
 </html>
-{code}
+----
 
 Now we have a properly encapsulated input component which provides its own markup. Furthermore you can see the correct usage of a Wicket @Form@. The components get added by calling @form.add(Component)@ on the instance variable. On the other hand, it is allowed to add behaviours and validators over inheritance, because those do not have markup ids which must be bound.
 
@@ -90,7 +95,8 @@ With that, the usage of @RegistrationInputPanel@ is much more intuitive. There i
 
 *Listing 4:*
 
-{code}
+[source, java]
+----
 public class RegistrationPage extends Page {
     public RegistrationPage(IModel<Registration> regModel) {
         Form<?> form = new Form("form");
@@ -103,9 +109,10 @@ public class RegistrationPage extends Page {
         add(form);
     }
 }
-{code}
+----
 
-{code:html}
+[source, html]
+----
 <html>
 <body>
     <form wicket:id="form">
@@ -116,4 +123,4 @@ public class RegistrationPage extends Page {
     </form>
 </body>
 </html>
-{code}
+----

@@ -24,7 +24,8 @@ To modify the set of allowed files formats we can add one or more patterns with 
 
 Patterns that allow to access to every file with a given extensions (such as “+\*.pdf”) should be always avoided in favour of more restrictive expressions that contain a directory structure:
 
-{code}
+[source, java]
+----
 //Application class code...
 @Override
 public void init()   

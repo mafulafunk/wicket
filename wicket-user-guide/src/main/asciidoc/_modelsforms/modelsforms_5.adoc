@@ -10,7 +10,8 @@ What we want to do in this example is to chain the model of the DropDownChoice (
 
 The following is the resulting markup of the example page:
 
-{code:html}
+[source, html]
+----
 ...
 <body>
 	List of persons <select wicket:id="persons"></select> <br/>
@@ -45,11 +46,12 @@ The following is the resulting markup of the example page:
 						<input type="submit" value="Save"/>
 					</form>
 				</body>				
-{code}
+----
 
 The initialization code for DropDownChoice is the following:
 
-{code}
+[source, java]
+----
 Model<Person> listModel = new Model<Person>();
 ChoiceRenderer<Person> personRender = new ChoiceRenderer<Person>("fullName");
 personsList = new DropDownChoice<Person>("persons", listModel, loadPersons(), personRender){
@@ -60,13 +62,14 @@ personsList = new DropDownChoice<Person>("persons", listModel, loadPersons(), pe
 		}
 		
 };
-{code}
+----
 
 As choice render we have used the basic implementation provided with the org.apache.wicket .markup.html.form.ChoiceRenderer class that we have seen in the previous paragraph. loadPersons() is just an utility method which generates a list of Person instances. The model for DropDownChoice is a simple instance of the Model class.
 
 Here is the whole code of the page (except for the loadPersons() method):
 
-{code}
+[source, java]
+----
 public class PersonListDetails extends WebPage {
   private Form form;
   private DropDownChoice<Person> personsList;
@@ -96,6 +99,6 @@ public class PersonListDetails extends WebPage {
 	       //loadPersons()
 	       //...
 	}
-{code}
+----
 
 The two models work together as a pipeline where the output of method getObject of Model is the model object of CompoundPropertyModel. As we have seen, model chaining allows us to combine the actions of two or more models without creating new custom implementations.

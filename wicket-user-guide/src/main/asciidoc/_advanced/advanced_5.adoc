@@ -6,7 +6,8 @@ To become a markup producer, a component must simply implement interface @org.ap
 
 In the following example we have a custom panel without a related markup file that generates a simple <div> tag as markup: 
 
-{code}
+[source, java]
+----
 public class AutoMarkupGenPanel extends Panel implements IMarkupResourceStreamProvider {
 	public AutoMarkupGenPanel(String id, IModel<?> model) {
 		super(id, model);		
@@ -21,7 +22,7 @@ public class AutoMarkupGenPanel extends Panel implements IMarkupResourceStreamPr
 		return resourceStream;
 	}
 }
-{code}
+----
 
 Class StringResourceStream is a resource stream that uses a String instance as backing object.
 
@@ -31,7 +32,8 @@ As we have seen in the previous paragraph, Wicket uses an internal cache for com
 
 This interface defines method @getCacheKey(MarkupContainer, Class<?>)@ which returns a string value representing the key used by Wicket to retrieve the markup of the component from the cache. If this value is null the markup will not be cached, allowing the component to display the last generated markup each time it is rendered:
 
-{code}
+[source, java]
+----
 public class NoCacheMarkupPanel extends Panel implements IMarkupCacheKeyProvider {
 	public NoCacheMarkupPanel(String id, IModel<?> model) {
 		super(id, model);		
@@ -59,4 +61,4 @@ public class NoCacheMarkupPanel extends Panel implements IMarkupCacheKeyProvider
 		return null;
 	}
 }
-{code}
+----

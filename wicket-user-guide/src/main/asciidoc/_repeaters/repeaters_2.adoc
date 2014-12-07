@@ -7,7 +7,8 @@ Unlike RepeatingView this component is intended to be used with complex markup f
 To generate its children, ListView calls its abstract method populateItem(ListItem<T> item) for each item in the list, so we must provide an implementation of this method to tell the component how to create its children components. In the following example we use a ListView to display a list of Person objects:
 
 *HTML:*
-{code:html}
+[source, html]
+----
 ...
 	<body>
 		<div id="bd" style="display: table;">
@@ -18,10 +19,11 @@ To generate its children, ListView calls its abstract method populateItem(ListIt
 		</div>
 	</body>
 ...
-{code}
+----
 
 *Java Code (Page Constructor):*
-{code}
+[source, java]
+----
 public HomePage(final PageParameters parameters) {
 	   List<Person> persons = Arrays.asList(new Person("John", "Smith"), 
                                         new Person("Dan", "Wong"));
@@ -33,7 +35,7 @@ public HomePage(final PageParameters parameters) {
 	}			
    });
 }
-{code}
+----
 
 *Screenshot of generated page:*
 

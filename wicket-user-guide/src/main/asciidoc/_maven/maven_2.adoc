@@ -16,7 +16,8 @@ image::quickstart-webpage.png[title="fooBar"]
 Here we have to specify the root package of our project (GroupId), the project name (ArtifactId) and which version of Wicket we want to use (Version).
 Once we have run the resulting command in the OS shell, we will have a new folder with the same name of the project (i.e the ArtifactId). Inside this folder we can find a file called pom.xml. This is the main file used by Maven to manage our project. For example, using “org.wicketTutorial” as GroupId and “MyProject” as ArtifactId, we would obtain the following artifacts:
 
-{code}
+[source, java]
+----
  .\MyProject
         |   pom.xml
         |
@@ -42,11 +43,13 @@ Once we have run the resulting command in the OS shell, we will have a new folde
                         \---wicketTutorial
                                 TestHomePage.java
 
-{code}
+[source, java]
+----
 
 Amongst other things, file pom.xml contains a section delimited by tag <dependencies> which declares the dependencies of our project. By default the Maven archetype will add the following Wicket modules as dependencies:
 
-{code:xml}
+[source, xml]
+----
 ...
 <dependencies>
 	<!--  WICKET DEPENDENCIES -->
@@ -70,7 +73,7 @@ Amongst other things, file pom.xml contains a section delimited by tag <dependen
 	...
 </dependencies>
 ...
-{code}
+----
 
 If we need to use more Wicket modules or additional libraries, we can add the appropriate XML fragments here.
 
@@ -91,9 +94,10 @@ image::intellj-maven-import.png[title="fooBar"]
 *Eclipse*
 If our IDE is Eclipse the import procedure is a little more complex. Before opening the new project we must generate the Eclipse project artifacts running the following command from project root:
 
-{code}
+[source, java]
+----
 mvn eclipse:eclipse
-{code}
+----
 
   Now to import our project into Eclipse we must create a classpath variable called M2_REPO that must point to your local Maven repository. This can be done selecting “Window/Preferences” and searching for “Classpath Variables”. The folder containing our local Maven repository is usually under our user folder and is called .m2 (for example under Unix system is /home/<myUserName>/.m2/repository):
 

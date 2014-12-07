@@ -10,7 +10,8 @@ h3. Session and listeners
 
 Similar to the @RequestCycle@, class @org.apache.wicket.Session@ also offers support for listener entities. With Session these entities must implement the callback interface @org.apache.wicket.ISessionListener@ which exposes only the @onCreated(Session session)@ method. As you might guess from its name, this method is called when a new session is created. Session listeners must be added to our application using a typed collection, just like we have done before with request cycle listeners:
 
-{code}
+[source, java]
+----
 @Override
 public void init(){
 
@@ -22,7 +23,7 @@ public void init(){
 	getSessionListeners().add(myListener)
 	
 }
-{code}
+----
 
 h3. Handling session attributes
 
@@ -38,10 +39,11 @@ h3. Accessing to the HTTP session
 
 If for any reason we need to directly access to the underlying HttpSession object, we can retrieve it from the current request with the following code:
 
-{code}
+[source, java]
+----
 HttpSession session = ((ServletWebRequest)RequestCycle.get()
 		.getRequest()).getContainerRequest().getSession();
-{code}
+----
 
 Using the raw session object might be necessary if we have to set a session attribute with a particular name without the prefix added by Wicket. Let's say for example that we are working with Tomcat as web server. One of the administrative tools provided by Tomcat is a page listing all the active user sessions of a given web application:
 
@@ -49,21 +51,23 @@ image::tomcat-admin-sessions.png[title="fooBar"]
 
 Tomcat allows us to set the values that will be displayed in columns “Guessed locale” and “Guessed User name”. One possible way to do this is to use session attributes named “Locale” and “userName” but we can't create them via Wicket's Session class because they would not have exactly the name required by Tomcat. Instead, we must use the raw HttpSession and set our attributes on it:
 
-{code}
+[source, java]
+----
 HttpSession session = ((ServletWebRequest)RequestCycle.get().
 		getRequest()).getContainerRequest().getSession();	
 
 session.setAttribute("Locale", "ENGLISH");
 session.setAttribute("userName", "Mr BadGuy");
-{code}
+----
 
 h3. Temporary and permanent sessions
 
 Wicket doesn't need to store data into user session as long as the user visits only stateless pages. Nonetheless, even under these conditions, a temporary session object is created to process each request but it is discarded at the end of the current request. To know if the current session is temporary, we can use the isTemporary() method:
 
-{code}
+[source, java]
+----
 Session.get().isTemporary();
-{code}
+----
 
 If a session is not temporary (i.e. it is permanent), it's identified by an unique id which can be read calling the getId() method. This value will be null if the session is temporary.
 
@@ -72,7 +76,8 @@ Although Wicket is able to automatically recognize when it needs to replace a te
 To illustrate this possible scenario let's consider project BindSessionExample where we have a stateless home page which sets a session attribute inside its constructor and then it redirects the user to another page which displays with a label the session attribute previously created. The code of the two pages is as follows:
 
 Home page:
-{code}
+[source, java]
+----
 public class HomePage extends WebPage {
     public HomePage(final PageParameters parameters) {
     	Session.get().setAttribute("username", "tommy");
@@ -81,11 +86,12 @@ public class HomePage extends WebPage {
 	setResponsePage(DisplaySessionParameter.class);
     }   
 }
-{code}
+----
 
 Target page:
 
-{code}
+[source, java]
+----
 public class DisplaySessionParameter extends WebPage {
 
 	public DisplaySessionParameter() {
@@ -93,7 +99,7 @@ public class DisplaySessionParameter extends WebPage {
 	   add(new Label("username", (String) Session.get().getAttribute("username")));
 	}
 }
-{code}
+----
 
 Again, we kept page logic very simple to not over-bloat the example with unnecessary code. In the snippet above we have also bolded Session's bind() method which converts temporary session into a permanent one. If the home page has not invoked this method, the session with its attribute would have been discarded at the end of the request and the page DisplaySessionParameter would have displayed an empty value in its label.
 
@@ -121,7 +127,8 @@ The key used for metadata is an instance of class @org.apache.wicket.MetaDataKey
 To retrieve a previously inserted object we must use the @getMetaData(MetaDataKey<T> key)@ method. In the following example we set a @java.sql.Connection@ object in the application's metadata so it can be used by any page of the application:
 
 Application class code:
-{code}
+[source, java]
+----
 public static MetaDataApp extends WebApplication{
 	//Do some stuff...
 	/**
@@ -143,12 +150,13 @@ public static MetaDataApp extends WebApplication{
 		
 	}
 }
-{code}
+----
 
 Code to get the object from the metadata:
 
-{code}
+[source, java]
+----
 Connection connection = Application.get().getMetaData(MetaDataApp.connectionKey);
-{code}
+----
 
 Since MetaDataKey<T> class is declared as abstract, we must implement it with a subclass or with an anonymous class (like we did in the example above).

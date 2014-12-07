@@ -6,7 +6,8 @@ This test class allows to check if the generated markup contains one or more tag
 
 *HomePage markup:*
 
-{code:html}
+[source, html]
+----
 <html xmlns:wicket="http://wicket.apache.org">
 	<head>
 		<meta charset="utf-8" />
@@ -17,11 +18,12 @@ This test class allows to check if the generated markup contains one or more tag
 		<div class="myClass"></div>
 	</body>
 </html>
-{code}
+----
 
 *Test method:*
 
-{code}
+[source, java]
+----
 @Test
 public void homePageMarkupTest()
 {
@@ -40,13 +42,14 @@ public void homePageMarkupTest()
 	
 	Assert.assertEquals(2, tagTesterList.size());
 }
-{code}
+----
 
 The name of the tag found by TagTester can be retrieved with its method getName. Method @createTagsByAttribute@ returns all the tags that have the given value on the class attribute. In the code above we have used this method to test that our markup contains two tags having attribute class equal to myClass.
 
 Another utility class that comes in handy when we want to test components markup is @ComponentRenderer@ in package @org.apache.wicket.core.util.string@. The purpose of this class is to render a page or a component in isolation with its static methods @renderComponent@ and @renderPage@. Both methods return the generated markup as @CharSequence@:
 
-{code}
+[source, java]
+----
 @Test
 public void customComponentMarkupTest()
 {

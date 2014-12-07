@@ -4,32 +4,36 @@ A component can get the current locale in use calling its method getLocale(). By
 
 Developers can change the locale of the current session with Session's method setLocale (Locale locale): 
 
-{code}
+[source, java]
+----
 Session.get().setLocale(locale)
-{code}
+----
 
 h3. Style and variation parameters for bundles
 
 In addition to locale's informations, Wicket supports two further parameters to identify a resource bundle: style and variation. Parameter style is a string value and is defined at session-level. To set/get the style for the current session we can use the corresponding setter and getter of class Session:
 
-{code}
+[source, java]
+----
 Session.get().setStyle("myStyle");
 Session.get().getStyle();
-{code}
+----
 
 If set, style's value contributes to the final full name of the bundle and it is placed between the base name and the locale's informations:
 
-{code}
+[source, java]
+----
 <base name>[_style][_<language code>[_<COUNTRY_CODE>[_<variant code>]]]
-{code}
+----
 
 Wicket gives the priority to candidate names containing the style information (if available). The other parameter we can use for localization is variation. Just like style also variation is a string value, but it is defined at component-level. The value of variation is returned by Component's method getVariation(). By default this method returns the variation of the parent component or a null value if a component hasn't a parent (i.e. it's a page). If we want to customize this parameter we must overwrite method  getVariation and make it return the desired value.
 
 Variation's value contributes to the final full name of the bundle and is placed before style parameter: 
 
-{code}
+[source, java]
+----
 <base name>[_variation][_style][_<language code>[_<COUNTRY_CODE>[_<variant code>]]]
-{code}
+----
 
 
 h3. Using UTF-8 for resource bundles
@@ -48,13 +52,14 @@ Starting from version 1.5, Java introduced the support for XML files as resource
 
 Here is an example of XML resource bundle taken from project LocalizedGreetings (file WicketApplication_zh.properties.xml) containing the translation in simplified Chinese of the greeting message “Welcome to the website!”:
 
-{code:xml}
+[source, xml]
+----
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://www.oracle.com/webfolder/technetwork/jsc/dtd/properties.dtd">
 <properties>
 	<entry key="greetingMessage">欢迎光临本网站！</entry>
 </properties>
-{code}
+----
 
 To use XML bundles in Wicket we don't need to put in place any additional configuration. The only rule we have to respect with these files is to use properties.xml as extension while their base name follows the same rules seen so far for bundle names.
 
@@ -62,17 +67,19 @@ h3. Reading bundles from code
 
 Class Component makes reading bundles very easy with method getString(String key). This method searches for a resource with the given key looking into the resource bundles visited by the lookup algorithm illustrated in paragraph 12.4. For example if we have a greeting message with key greetingMessage in our application's resource  bundle, we can read it from our component code with this instruction:
 
-{code}
+[source, java]
+----
 getString("greetingMessage");
-{code}
+----
 
 h3. Localization of bundles in Wicket
 
 In chapter 10 we have used as resource bundle the properties file placed next to our application class. This file is the default resource bundle for the entire application and it is used by the lookup algorithm if it doesn't find any better match for a given component and locale. If we want to provide localized versions of this file we must simply follow the rules of Java i18n and put our translated resources into another properties file with a name corresponding to the desired locale. For example project LocalizedGreetings comes with the default application's properties file ( WicketApplication.properties) containing a greeting message:
 
-{code}
+[source, java]
+----
 greetingMessage=Welcome to the site!
-{code}
+----
 
 Along with this file we can also find a bundle for German (WicketApplication_de.properties) and another one in XML format for simplified Chinese (WicketApplication_zh.properties.xml). The example project consists of a single page (HomePage.java) displaying the greeting message. The current locale can be changed with a drop-down list and the possible options are English (the default one), German and simplified Chinese:
 
@@ -80,7 +87,8 @@ image::locale-german.png[title="fooBar"]
 
 The label displaying the greeting message has a custom read-only model which returns the message with method getString. The initialization code for this label is this:
 
-{code}
+[source, java]
+----
 AbstractReadOnlyModel<String> model = new AbstractReadOnlyModel<String>() {			
 			@Override
 			public String getObject() {
@@ -89,13 +97,14 @@ AbstractReadOnlyModel<String> model = new AbstractReadOnlyModel<String>() {
 };
 
 add(new Label("greetingMessage", model));
-{code}
+----
 
 Class @org.apache.wicket.model.AbstractReadOnlyModel@ is a convenience class for implementing read-only models. In this project we have implemented a custom read-only model for illustrative purposes only because Wicket already provides built-in models for the same task. We will see them in paragraph 12.6.
 
 The rest of the code of the home page builds the stateless form and the drop-down menu used to change the locale.
 
-{code}
+[source, java]
+----
 List<Locale> locales = Arrays.asList(Locale.ENGLISH, Locale.CHINESE, Locale.GERMAN);
 final DropDownChoice<Locale> changeLocale = 
              new DropDownChoice<Locale>("changeLocale", new Model<Locale>(), locales);
@@ -109,7 +118,7 @@ StatelessForm form = new StatelessForm("form"){
 		
 setStatelessHint(true);
 add(form.add(changeLocale))
-{code}
+----
 
 
 h3. Localization of markup files
@@ -124,18 +133,21 @@ h3. Reading bundles with tag <wicket:message>
 
 String resources can be also retrieved directly from markup code using tag <wicket:message>. The key of the desired resource is specified with attribute key:
 
-{code:xml}
+[source, xml]
+----
 <wicket:message key="greetingMessage">message goes here</wicket:message>
-{code}
+----
 
 wicket:message can be adopted also to localize the attributes of a tag. The name of the attribute and the resource key are expressed as a colon-separated value. In the following markup the content of attribute value will be replaced with the localized resource having 'key4value' as key:
 
-{code:html}
+[source, html]
+----
 <input type="submit" value="Preview value" wicket:message="value:key4value"/>
-{code}
+----
 
 If we want to specify multiple attributes at once, we can separate them with a coma:
 
-{code:html}
+[source, html]
+----
 <input type="submit" value="Preview value" wicket:message="value:key4value, title:key4title"/>
-{code}
+----

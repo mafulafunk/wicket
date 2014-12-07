@@ -3,7 +3,8 @@ In this paragraph we will see the basic steps needed to use JSR 303 validation i
 
 In the example application we have a form to insert the data for a new @Person@ bean and its relative @Address@. The code for class @Person@ is the following
 
-{code}
+[source, java]
+----
 public class Person implements Serializable{
 	
 	@NotNull
@@ -22,11 +23,12 @@ public class Person implements Serializable{
 	@NotNull
 	private Address address; 
 }
-{code}
+----
 
 You can note the JSR 303 annotations used in the code above to declare validation constraints on class fields. Class @Address@ has the following code:
 
-{code}
+[source, java]
+----
 public class Address implements Serializable {
 	
 	@NotNull
@@ -38,17 +40,19 @@ public class Address implements Serializable {
 	@Pattern(regexp = "\\d+", message = "{address.invalidZipCode}")
 	private String zipCode;
 }
-{code}
+----
 
 You might have noted that in class @Address@ we have used annotation @Pattern using also attribute @message@ which contains the key of the bundle to use for validation message. Our custom bundle is contained inside @HomePage.properties@:
 
-{code}
+[source, java]
+----
 address.invalidZipCode=The inserted zip code is not valid.
-{code}
+----
 
 To tell Wicket to use JSR 303, we must register bean validator on Application's startup: 
 
-{code}
+[source, java]
+----
 public class WicketApplication extends WebApplication {
 	@Override
 	public void init(){
@@ -57,11 +61,12 @@ public class WicketApplication extends WebApplication {
 		new BeanValidationConfiguration().configure(this);
 	}
 }
-{code}
+----
 
 The last step to harness JSR 303 annotations is to add validator @org.apache.wicket.bean.validation.PropertyValidator@ to our corresponding form components:
 
-{code}
+[source, java]
+----
 public HomePage(final PageParameters parameters) {
 	super(parameters);
 
@@ -74,7 +79,7 @@ public HomePage(final PageParameters parameters) {
 	form.add(new TextField("age").add(new PropertyValidator()));
         //...
 }
-{code}
+----
 
 Now we can run our application an see that JSR 303 annotations are fully effective:
 

@@ -10,7 +10,8 @@ image::page-id.png[title="fooBar"]
 
 In this chapter we will use a revised version of this example project where the component hierarchy is modified inside the Link's onClick()method. This is necessary because Wicket creates a new page version only if the page is modified before its method onBeforeRender() is invoked. The code of the new home page is the following:
 
-{code}
+[source, java]
+----
 public class HomePage extends WebPage
 {
 	private static final long serialVersionUID = 1L;
@@ -35,7 +36,7 @@ public class HomePage extends WebPage
 		
 	}	
 }
-{code}
+----
 
 Now if we run the new example (project LifeCycleStagesRevisited) and we click on the “Reload” button, a new page version is created and the page id is increased by one:
 
@@ -55,12 +56,13 @@ h3. Using a specific page version with PageReference
 
 To retrieve a specific page version in our code we can use class @org.apache.wicket.PageReference@ by providing its constructor with the corresponding page id:
 
-{code}
+[source, java]
+----
 //load page version with page id = 3
 PageReference pageReference = new PageReference(3);
 //load the related page instance
 Page page = pageReference.getPage();
-{code}
+----
 
 To get the related page instance we must use method getPage.
 
@@ -74,14 +76,15 @@ Starting from version 1.5 it is possible to choose which implementation of Java 
 
 We can access this interface inside the method init of the class Application using the getFrameworkSettings() method :
 
-{code}
+[source, java]
+----
 @Override
 public void init()
 {
 	super.init();
 	getFrameworkSettings().setSerializer(yourSerializer);
 }
-{code}
+----
 
 A serializer based on Kryo library is provided by the WicketStuff project. You can find more information on this project, as well as the instructions to use its modules, in Appendix B.
 
@@ -97,26 +100,28 @@ The session-scoped cache is faster then the other memory levels but it contains 
 
 This interface provides the setMaxSizePerSession(Bytes bytes) method to set the size for page store file. The Bytes parameter is the maximum size allowed for this file:
 
-{code}
+[source, java]
+----
 @Override
 public void init()
 {
 	super.init();
 	getStoreSettings().setMaxSizePerSession(Bytes.kilobytes(500));
 }
-{code}
+----
 
 Class @org.apache.wicket.util.lang.Bytes@ is an utility class provided by Wicket to express size in bytes (for further details refer to the JavaDoc).
 For the second level cache we can use the setInmemoryCacheSize(int inmemoryCacheSize) method. The integer parameter is the maximum number of page instances that will be saved into application-scoped cache:
 
-{code}
+[source, java]
+----
 @Override
 public void init()
 {
 	super.init();
 	getStoreSettings().setInmemoryCacheSize(50);
 }
-{code}
+----
 
 h3. Page expiration
 
@@ -126,7 +131,8 @@ image::page-expired.png[title="fooBar"]
 
 This error page can be customized with the setPageExpiredErrorPage method of the @org.apache.wicket.settings.IApplicationSettings@ interface:
 
-{code}
+[source, java]
+----
 @Override
 public void init()
 {
@@ -134,6 +140,6 @@ public void init()
 	getApplicationSettings().setPageExpiredErrorPage(
 				CustomExpiredErrorPage.class);
 }
-{code}
+----
 
 The page class provided as custom error page must have a public constructor with no argument or a constructor that takes as input a single PageParameters argument (the page must be bookmarkable as described in paragraph 8.1.1).

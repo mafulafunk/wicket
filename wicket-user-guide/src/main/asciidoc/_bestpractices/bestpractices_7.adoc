@@ -4,7 +4,8 @@ Avoid unwrapping models within the constructor hierarchy, i.e. do not call @IMod
 
 *Listing 10:*
 
-{code}
+[source, java]
+----
 new Form("register") {
     public void onSubmit() {
         // correct, unwrap model in an event call
@@ -12,6 +13,6 @@ new Form("register") {
         userService.register(reg);
     }
 }
-{code}
+----
 
 An additional possibility to unwrap models is via overriding methods like @isVisible()@, @isEnabled()@ or @onBeforeRender()@.

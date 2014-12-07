@@ -4,7 +4,8 @@ The Wicket session is your own extension of Wicket's base session. It is fully t
 
 *Listing 14:*
 
-{code}
+[source, java]
+----
 public class MyPage extends WebPage {
     IModel<MyData> myDataModel;
 
@@ -19,6 +20,6 @@ public class MyPage extends WebPage {
         add(next);
     }
 }
-{code}
+----
 
 You should pass concrete information to the page. All models can simply be stored in fields because Wicket pages are user-specific instances and no singletons in contrast to Struts. The big advantage of this approach is that the data gets automatically cleaned up when a user completes or exits the page flow. No manual cleanup anymore! This is basically an automatic garbage collector for your session.

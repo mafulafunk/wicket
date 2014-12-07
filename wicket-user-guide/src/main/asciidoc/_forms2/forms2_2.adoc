@@ -6,10 +6,11 @@ A validator is an implementation of the @org.apache.wicket.validation.IValidator
 
 For example if we want to use a text field to insert an email address, we could use the built-in validator  EmailAddressValidator to ensure that the inserted input will respect the email format "local-part@domain":http://en.wikipedia.org/wiki/Email_address :
 
-{code}
+[source, java]
+----
 TextField email = new TextField("email");
 email.add(EmailAddressValidator.getInstance());
-{code}
+----
 
 Wicket comes with a set of built-in validators that should suit most of our needs. We will see them in paragraph 10.2.3.
 
@@ -47,13 +48,14 @@ h3. Displaying feedback messages and filtering them
 
 To display feedback messages we must use component @org.apache.wicket.markup.html.panel.FeedbackPanel@. This component automatically reads all the feedback messages generated during form validation and displays them with an unordered list:
 
-{code:html}
+[source, html]
+----
 <ul class="feedbackPanel"> 
 	<li class="feedbackPanelERROR"> 
 		<span class="feedbackPanelERROR">Field 'Username' is required.</span> 
 	</li> 
 </ul>
-{code}
+----
 
 CSS classes "feedbackPanel" and "feedbackPanelERROR" can be used in order to customize the style of the message list:
 
@@ -171,7 +173,8 @@ For the sake of simplicity, the validator of our example will check the given us
 
 A custom validator must simply implement interface IValidator:
 
-{code}
+[source, java]
+----
 public class UsernameValidator implements IValidator<String> {
 	List<String> existingUsernames = Arrays.asList("bigJack", "anonymous", "mrSmith");
 
@@ -188,7 +191,7 @@ public class UsernameValidator implements IValidator<String> {
 		}
 	}	
 }
-{code}
+----
 
 The only method defined inside IValidator is validate(IValidatable<T> validatable) and is invoked during validation's step. Interface IValidatable represents the component being validated and it can be used to retrieve the component model (getModel()) or the value to validate (getValue()). 
 
@@ -219,7 +222,8 @@ In the example seen in the previous paragraph we have a form which uses success 
 
 *HTML:*
 
-{code:html}
+[source, html]
+----
 <body>
 	<form wicket:id="form">
 		Username: <input type="text" wicket:id="username"/>
@@ -231,11 +235,12 @@ In the example seen in the previous paragraph we have a form which uses success 
 	<div style="color:red" wicket:id="feedbackMessage">
 	</div>
 </body>
-{code}
+----
 
 *Java code:*
 
-{code}
+[source, java]
+----
 public class HomePage extends WebPage {
 
     public HomePage(final PageParameters parameters) {	
@@ -275,6 +280,6 @@ public class HomePage extends WebPage {
     //UsernameValidator definition
     //...
 }
-{code}
+----
 
 The two feedback panels must be filtered in order to display just the messages with a given level of severity (ERROR for validator message and SUCCESS for form's flash message). Unfortunately the built-in message filter ErrorLevelFeedbackMessageFilter is not suitable for this task because its filter condition does not check for an exact error level (the given level is used as lower bound value). As a consequence, we had to build a custom filter (inner class ExactErrorLevelFilter) to accept only the desired severity level (see method accept of interface IFeedbackMessageFilter). 

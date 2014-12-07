@@ -10,19 +10,21 @@ To work with multiple choice list Wicket provides the @org.apache.wicket.markup.
 
 *HTML:*
 
-{code:html}
+[source, html]
+----
 <select wicket:id="fruits">
 	<option>choice 1</option>
 	<option>choice 2</option>
 </select>
-{code}
+----
 
 *Java code:*
 
-{code}
+[source, java]
+----
 List<String> fruits = Arrays.asList("apple", "strawberry", "watermelon"); 
 form.add(new ListMultipleChoice("fruits", new ListModel<String>(new ArrayList<String>()), fruits));
-{code}
+----
 
 *Screenshot:*
 
@@ -44,7 +46,8 @@ Built-in @org.apache.wicket.extensions.markup.html.form.palette.Palette@ compone
 
 *HTML:*
 
-{code:html}
+[source, html]
+----
 <div wicket:id="palette">
    Select will be replaced by the actual content...
 	   <select multiple="multiple">
@@ -52,11 +55,12 @@ Built-in @org.apache.wicket.extensions.markup.html.form.palette.Palette@ compone
      <option>option2</option>
      <option>option3</option>
 </div>
-{code}
+----
 
 *Java code:*
 
-{code}
+[source, java]
+----
 Person john = new Person("John", "Smith");
 Person bob = new Person("Bob", "Smith");
 Person jill = new Person("Jill", "Smith");
@@ -66,7 +70,7 @@ List<Person> theSmiths = Arrays.asList(john, bob, jill, andrea);
 ChoiceRenderer render = new ChoiceRenderer("name"); 
 
 form.add(new Palette("palette", Model.of(new ArrayList<String>()), new ListModel<String> (theSmiths), render, 5, true));
-{code}
+----
 
 *Screenshot:*
 
@@ -76,7 +80,8 @@ The last two parameters of the Palette's constructor (an integer value and a boo
 
 The markup of this component uses a number of CSS classes which can be extended/overriden to customize the style of the component. We can find these classes and see which tags they decorate in the default markup file of the component:
 
-{code:html}
+[source, html]
+----
 <table cellspacing="0" cellpadding="2" class="palette">
 <tr>
 	<td class="header headerAvailable"><span wicket:id="availableHeader">[available header]</span></td>
@@ -103,4 +108,4 @@ The markup of this component uses a number of CSS classes which can be extended/
 	</td>
 </tr>
 </table>
-{code}
+----

@@ -26,7 +26,8 @@ h3. JavaScript code
 
 Now that we know what to do on the Java side, let's have a look at the custom JavaScript code that must be returned by our listener (file moveHiderAndIndicator.js):
 
-{code:javascript}
+[source, javascript]
+----
 DisableComponentListener = {
    disableElement: function(elementId, activeIconUrl){
       var hiderId = elementId + "-disable-layer";
@@ -56,25 +57,27 @@ DisableComponentListener = {
                                      my: 'center center'});
    },
    //function hideComponent
-{code}
+----
 
 Function DisableComponentListener.disableElement places the overlay <div> an the activity indicator on the desired component. The parameters in input are the markup id of the component we want to disable and the URL of the activity indicator picture. These two parameters must be provided by our custom listener.
 
 The rest of custom JavaScript contains function DisableComponentListener.hideComponent which is just a wrapper around the JQuery function remove():
 
-{code:javascript}
+[source, javascript]
+----
 hideComponent: function(elementId){
 	var hiderId = elementId + "-disable-layer";
 	$('#' + hiderId).remove();
 	}
 };
-{code}
+----
 
 h3. Java class code
 
 The code of our custom listener is the following:
 
-{code}
+[source, java]
+----
 public class DisableComponentListener extends AjaxCallListener {
    private static PackageResourceReference customScriptReference = new   
    PackageResourceReference(DisableComponentListener.class, "moveHiderAndIndicator.js");
@@ -117,13 +120,14 @@ public class DisableComponentListener extends AjaxCallListener {
       response.render(JavaScriptHeaderItem.forReference(customScriptReference) );
    }
 }
-{code}
+----
 
 As you can see in the code above we have created a function (@getIndicatorUrl@) to retrieve the URL of the indicator picture. This was done in order to make the picture customizable by overriding this method.
 
 Once we have our listener in place, we can finally use it in our example overwriting method @updateAjaxAttributes@ of the AJAX button that submits the form:
 
-{code}
+[source, java]
+----
 //...
 new AjaxButton("ajaxButton"){
 	@Override
@@ -133,7 +137,7 @@ new AjaxButton("ajaxButton"){
 	}
 }
 //...
-{code}
+----
 
 h3. Global listeners
 
@@ -161,7 +165,8 @@ To solve the second unwanted side effect we can register a global AJAX call list
 
 Project @CustomDatepickerAjax@ contains a new version of our datepicker which adds to its JavaScript file JQDatePicker.js the code needed to register a callback function that gets rid of the JQuery datepicker before the component is removed from the DOM:
 
-{code}
+[source, java]
+----
 Wicket.Event.subscribe('/dom/node/removing', 
     function(jqEvent, attributes, jqXHR, errorThrown, textStatus) {
 	var componentId = '#' + attributes['id'];
@@ -169,6 +174,6 @@ Wicket.Event.subscribe('/dom/node/removing',
 	      $(componentId).datepicker('destroy');
      }
 );
-{code}
+----
 
 The code above retrieves the id of the component that is about to be removed using parameter attributes. Then it checks if a JQuery datepicker was defined for the given component and if so, it removes the widget calling function destroy.

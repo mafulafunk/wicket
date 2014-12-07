@@ -27,7 +27,8 @@ Now as example of a possible use of LoadableDetachableModel, we will build a mod
 The following model is provided for example purposes only and is not intended to be used in production environment. Important aspects such as transaction management are not taken into account and you should rework the code before considering to use it.
 {warning}
 
-{code}
+[source, java]
+----
 public class JpaLoadableModel<T> extends LoadableDetachableModel<T> {
   
   private EntityManagerFactory entityManagerFactory;
@@ -71,7 +72,7 @@ public class JpaLoadableModel<T> extends LoadableDetachableModel<T> {
 	     identifier = (Serializable) persistenceUtil.getIdentifier(entity);    
 	  }
 	}
-{code}
+----
 
 The constructor of the model takes as input two parameters: an implementation of the JPA interface  javax.persistence.EntityManagerFactory to manage JPA entities and the entity that must be handled by this model. Inside its constructor the model saves the class of the entity and its id (which could be null if the entity has not been persisted yet). These two informations are required to retrieve the entity at a later time and are used by the load method.
 
